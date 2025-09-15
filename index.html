@@ -734,7 +734,25 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 갤러리 클릭 이벤트
+        // 실시간 참석 현황 시뮬레이션 (실제로는 Google Sheets API 연동)
+        function updateAttendanceStats() {
+            // 임시 데이터 (실제로는 Google Sheets에서 가져옴)
+            const stats = {
+                total: Math.floor(Math.random() * 50) + 100,
+                groom: Math.floor(Math.random() * 30) + 50,
+                bride: Math.floor(Math.random() * 30) + 50
+            };
+            
+            document.getElementById('totalAttendees').textContent = stats.total;
+            document.getElementById('groomSide').textContent = stats.groom;
+            document.getElementById('brideSide').textContent = stats.bride;
+        }
+        
+        // 페이지 로드시 통계 업데이트
+        updateAttendanceStats();
+        
+        // 30초마다 통계 업데이트 (실제 운영시)
+        // setInterval(updateAttendanceStats, 30000);
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('click', function() {
                 alert('실제 사진을 추가하려면 이미지 파일을 업로드하세요.');
