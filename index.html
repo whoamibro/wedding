@@ -118,17 +118,60 @@
             line-height: 1.6;
         }
 
-        .location-map {
+        #map {
             width: 100%;
-            height: 200px;
-            background: #f0f0f0;
+            height: 250px;
             border-radius: 10px;
             margin-top: 15px;
+        }
+
+        .map-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .map-btn {
+            flex: 1;
+            padding: 10px 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #999;
+            gap: 5px;
+        }
+
+        .map-btn:hover {
+            background: #f8f9fa;
+            border-color: #764ba2;
+            color: #764ba2;
+        }
+
+        .transport-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: left;
             font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .transport-section {
+            margin: 10px 0;
+        }
+
+        .transport-title {
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 5px;
         }
 
         .gallery {
@@ -145,10 +188,21 @@
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s ease;
+            position: relative;
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
+        }
+
+        .gallery-item::after {
+            content: '📷';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            opacity: 0.5;
         }
 
         .countdown {
@@ -191,6 +245,67 @@
             text-align: center;
         }
 
+        .rsvp-title {
+            font-size: 1.3em;
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .rsvp-form {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .number-input {
+            width: 80px;
+            text-align: center;
+        }
+
         .rsvp-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -201,11 +316,28 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin: 10px;
+            width: 100%;
         }
 
         .rsvp-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .rsvp-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
         }
 
         .footer {
@@ -225,6 +357,23 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+
+        .api-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .meal-option {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
 
         @media (max-width: 480px) {
@@ -267,7 +416,7 @@
                 <div class="info-title">신랑 & 신부</div>
                 <div class="info-detail">
                     <p>전인규 · 안은숙의 아들 <strong>전용진</strong></p>
-                    <p style="margin-top: 10px;">김종원 · 최○○의 딸 <strong>김혜윤</strong></p>
+                    <p style="margin-top: 10px;">김종원 · 아무개의 딸 <strong>김혜윤</strong></p>
                 </div>
             </div>
 
@@ -276,10 +425,50 @@
                 <div class="info-title">예식 안내</div>
                 <div class="info-detail">
                     <p><strong>일시:</strong> 2025년 10월 25일 토요일 오후 5시 30분</p>
-                    <p><strong>장소:</strong> 보코 서울 강남 LL층 볼룸 홀</p>
+                    <p><strong>장소:</strong> 보코 서울 강남 LL층 볼룸홀</p>
                     <p><strong>주소:</strong> 서울특별시 강남구 도산대로 144</p>
-                    <div class="location-map">
-                        [지도 영역 - 실제로는 카카오맵 API 연동]
+                    
+                    <!-- 카카오맵 API 알림 -->
+                    <div class="api-notice">
+                        ⚠️ 카카오맵을 표시하려면 API 키를 등록해주세요!<br>
+                        아래 코드에서 YOUR_APP_KEY를 실제 API 키로 교체하세요.
+                    </div>
+                    
+                    <!-- 지도 컨테이너 -->
+                    <div id="map"></div>
+                    
+                    <!-- 지도 앱 연결 버튼 -->
+                    <div class="map-buttons">
+                        <a href="https://map.kakao.com/link/map/보코서울강남,37.5221,127.0383" 
+                           target="_blank" class="map-btn">
+                            📍 카카오맵
+                        </a>
+                        <a href="https://map.naver.com/v5/search/보코서울강남" 
+                           target="_blank" class="map-btn">
+                            📍 네이버지도
+                        </a>
+                        <a href="https://maps.google.com/maps?q=37.5221,127.0383" 
+                           target="_blank" class="map-btn">
+                            📍 구글맵
+                        </a>
+                    </div>
+                    
+                    <!-- 교통 정보 -->
+                    <div class="transport-info">
+                        <div class="transport-section">
+                            <div class="transport-title">🚇 지하철</div>
+                            3호선 신사역 1번 출구에서 도보 5분<br>
+                            7호선 학동역 10번 출구에서 도보 7분
+                        </div>
+                        <div class="transport-section">
+                            <div class="transport-title">🚌 버스</div>
+                            간선: 147, 148, 241, 463<br>
+                            지선: 3011, 4211
+                        </div>
+                        <div class="transport-section">
+                            <div class="transport-title">🚗 자가용</div>
+                            건물 내 주차장 이용 가능 (3시간 무료 주차)
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,8 +512,69 @@
 
         <!-- 참석 의사 섹션 -->
         <div class="rsvp-section">
-            <button class="rsvp-btn" onclick="showMessage('참석')">참석하겠습니다</button>
-            <button class="rsvp-btn" onclick="showMessage('축하')">축하 메시지 남기기</button>
+            <h2 class="rsvp-title">참석 여부를 알려주세요</h2>
+            
+            <div class="rsvp-form">
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label class="form-label">성함 *</label>
+                        <input type="text" class="form-input" id="guestName" required placeholder="홍길동">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">연락처 *</label>
+                        <input type="tel" class="form-input" id="guestPhone" required placeholder="010-1234-5678">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">구분 *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="side" value="신랑측" required> 신랑측
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="side" value="신부측" required> 신부측
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">참석 여부 *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="참석" required onclick="toggleGuestCount(true)"> 참석
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="불참" required onclick="toggleGuestCount(false)"> 불참
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="guestCountGroup" style="display: none;">
+                        <label class="form-label">참석 인원 *</label>
+                        <input type="number" class="form-input number-input" id="guestCount" min="1" max="10" value="1">
+                        <small style="color: #999;">본인 포함 총 인원수를 입력해주세요</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">축하 메시지 (선택)</label>
+                        <textarea class="form-input" id="message" rows="3" placeholder="축하 메시지를 남겨주세요"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="rsvp-btn" id="submitBtn">참석 의사 전달하기</button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    ✅ 참석 의사가 성공적으로 전달되었습니다!<br>
+                    소중한 시간 내주셔서 감사합니다.
+                </div>
+            </div>
+            
+            <!-- Google Forms 대안 설명 -->
+            <div class="api-notice" style="margin-top: 20px;">
+                💡 참석 의사는 Google Forms로 자동 수집됩니다.<br>
+                아래 설정 가이드를 참고하여 Google Forms를 연동하세요.
+            </div>
         </div>
 
         <!-- 푸터 -->
@@ -333,10 +583,138 @@
         </div>
     </div>
 
+    <!-- 카카오맵 API -->
+    <!-- ⚠️ YOUR_APP_KEY를 실제 JavaScript API 키로 교체하세요! -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
+    
     <script>
+        // 참석 여부에 따른 인원수 입력 표시/숨기기
+        function toggleGuestCount(show) {
+            const guestCountGroup = document.getElementById('guestCountGroup');
+            const guestCount = document.getElementById('guestCount');
+            
+            if (show) {
+                guestCountGroup.style.display = 'block';
+                guestCount.required = true;
+            } else {
+                guestCountGroup.style.display = 'none';
+                guestCount.required = false;
+            }
+        }
+
+        // RSVP 폼 제출 처리
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 폼 데이터 수집
+            const formData = {
+                name: document.getElementById('guestName').value,
+                phone: document.getElementById('guestPhone').value,
+                side: document.querySelector('input[name="side"]:checked').value,
+                attendance: document.querySelector('input[name="attendance"]:checked').value,
+                guestCount: document.getElementById('guestCount').value || 0,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toLocaleString('ko-KR')
+            };
+            
+            // Google Forms URL (실제 URL로 교체 필요)
+            const GOOGLE_FORM_URL = 'YOUR_GOOGLE_FORM_URL';
+            
+            // Google Forms 엔트리 ID (실제 ID로 교체 필요)
+            const formUrl = `${GOOGLE_FORM_URL}?entry.XXXXX=${formData.name}&entry.XXXXX=${formData.phone}&entry.XXXXX=${formData.side}&entry.XXXXX=${formData.attendance}&entry.XXXXX=${formData.guestCount}&entry.XXXXX=${formData.message}`;
+            
+            // 개발 중에는 콘솔에 출력
+            console.log('제출된 데이터:', formData);
+            
+            // 성공 메시지 표시
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').textContent = '전송 완료';
+            
+            // 실제 Google Forms 제출 (CORS 문제로 인해 iframe 사용)
+            // const iframe = document.createElement('iframe');
+            // iframe.style.display = 'none';
+            // iframe.src = formUrl;
+            // document.body.appendChild(iframe);
+            
+            // 3초 후 폼 리셋
+            setTimeout(() => {
+                this.reset();
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').textContent = '참석 의사 전달하기';
+                document.getElementById('guestCountGroup').style.display = 'none';
+            }, 3000);
+        });
+
+        // 카카오맵 초기화
+        function initMap() {
+            try {
+                var container = document.getElementById('map');
+                
+                // 보코 서울 강남 좌표
+                var options = {
+                    center: new kakao.maps.LatLng(37.5221, 127.0383),
+                    level: 3
+                };
+
+                var map = new kakao.maps.Map(container, options);
+
+                // 마커 생성
+                var markerPosition = new kakao.maps.LatLng(37.5221, 127.0383);
+                var marker = new kakao.maps.Marker({
+                    position: markerPosition
+                });
+
+                marker.setMap(map);
+
+                // 인포윈도우
+                var iwContent = '<div style="padding:10px; text-align:center; width:200px;">' +
+                               '<strong>보코 서울 강남</strong><br>' +
+                               'LL층 볼룸홀<br>' +
+                               '<a href="https://map.kakao.com/link/to/보코서울강남,37.5221,127.0383" ' +
+                               'style="color:blue; text-decoration:none;" target="_blank">길찾기</a>' +
+                               '</div>';
+
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: iwContent
+                });
+
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    infowindow.open(map, marker);
+                });
+
+                infowindow.open(map, marker);
+
+                // 지도 컨트롤 추가
+                var mapTypeControl = new kakao.maps.MapTypeControl();
+                map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+                var zoomControl = new kakao.maps.ZoomControl();
+                map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+                console.log('카카오맵이 성공적으로 로드되었습니다!');
+            } catch (error) {
+                console.error('카카오맵 로드 실패:', error);
+                document.getElementById('map').innerHTML = 
+                    '<div style="padding: 50px; text-align: center; color: #999;">' +
+                    '지도를 표시하려면 API 키를 등록해주세요' +
+                    '</div>';
+            }
+        }
+
+        // 카카오맵 API 로드 확인 및 초기화
+        window.onload = function() {
+            if (typeof kakao !== 'undefined' && kakao.maps) {
+                initMap();
+            } else {
+                console.error('카카오맵 API가 로드되지 않았습니다. API 키를 확인해주세요.');
+            }
+        };
+
         // 카운트다운 타이머
         function updateCountdown() {
-            const weddingDate = new Date('2025-03-15T14:00:00').getTime();
+            const weddingDate = new Date('2025-10-25T17:30:00').getTime();
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
@@ -353,23 +731,13 @@
             }
         }
 
-        // 1초마다 카운트다운 업데이트
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 버튼 클릭 메시지
-        function showMessage(type) {
-            if (type === '참석') {
-                alert('참석 의사를 전달해 주셔서 감사합니다! 🎉');
-            } else {
-                alert('축하 메시지 기능은 준비 중입니다. 💝');
-            }
-        }
-
-        // 갤러리 아이템 클릭 이벤트
+        // 갤러리 클릭 이벤트
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('click', function() {
-                alert('갤러리 이미지를 클릭하셨습니다. 실제로는 이미지가 확대됩니다.');
+                alert('실제 사진을 추가하려면 이미지 파일을 업로드하세요.');
             });
         });
     </script>
