@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김철수 ♥ 이영희 결혼합니다</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .invitation-container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgb(255,192,203);stop-opacity:1" /><stop offset="100%" style="stop-color:rgb(255,182,193);stop-opacity:1" /></linearGradient></defs><rect width="400" height="400" fill="url(%23grad1)" /><circle cx="200" cy="200" r="80" fill="white" opacity="0.3"/><text x="200" y="210" font-family="serif" font-size="40" fill="white" text-anchor="middle">♥</text></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .date-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .names {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .wedding-date {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .content-section {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .greeting {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .info-title {
+            font-size: 1.3em;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .info-detail {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .location-map {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .countdown {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .countdown-title {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .time-unit {
+            text-align: center;
+        }
+
+        .time-value {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        .rsvp-section {
+            padding: 30px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .rsvp-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
+        }
+
+        .rsvp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        .heart {
+            color: #ff6b6b;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .names {
+                font-size: 2em;
+            }
+            
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .time-value {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <!-- 메인 히어로 섹션 -->
+        <div class="hero-section">
+            <div class="date-badge">2025.03.15 SAT 2:00 PM</div>
+            <h1 class="names">김철수 <span class="heart">♥</span> 이영희</h1>
+            <p class="wedding-date">2025년 3월 15일 토요일 오후 2시</p>
+        </div>
+
+        <!-- 인사말 섹션 -->
+        <div class="content-section">
+            <div class="greeting">
+                서로가 마주보며 다져온 사랑을<br>
+                이제 함께 한 곳을 바라보며<br>
+                걸어갈 수 있는 큰 사랑으로 키우고자 합니다.<br><br>
+                저희 두 사람이 사랑의 이름으로<br>
+                지켜나갈 수 있도록<br>
+                앞날을 축복해 주시면 감사하겠습니다.
+            </div>
+
+            <!-- 신랑 신부 정보 -->
+            <div class="info-card">
+                <div class="info-title">신랑 & 신부</div>
+                <div class="info-detail">
+                    <p>김○○ · 박○○의 장남 <strong>김철수</strong></p>
+                    <p style="margin-top: 10px;">이○○ · 최○○의 차녀 <strong>이영희</strong></p>
+                </div>
+            </div>
+
+            <!-- 예식 정보 -->
+            <div class="info-card">
+                <div class="info-title">예식 안내</div>
+                <div class="info-detail">
+                    <p><strong>일시:</strong> 2025년 3월 15일 토요일 오후 2시</p>
+                    <p><strong>장소:</strong> 더 그랜드 웨딩홀 3층 크리스탈홀</p>
+                    <p><strong>주소:</strong> 서울특별시 강남구 테헤란로 123</p>
+                    <div class="location-map">
+                        [지도 영역 - 실제로는 카카오맵 API 연동]
+                    </div>
+                </div>
+            </div>
+
+            <!-- D-Day 카운트다운 -->
+            <div class="countdown">
+                <div class="countdown-title">우리가 하나 되는 날까지</div>
+                <div class="countdown-timer" id="countdown">
+                    <div class="time-unit">
+                        <span class="time-value" id="days">00</span>
+                        <span class="time-label">일</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="hours">00</span>
+                        <span class="time-label">시간</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="minutes">00</span>
+                        <span class="time-label">분</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="seconds">00</span>
+                        <span class="time-label">초</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 갤러리 -->
+            <div class="info-card">
+                <div class="info-title">Gallery</div>
+                <div class="gallery">
+                    <div class="gallery-item"></div>
+                    <div class="gallery-item"></div>
+                    <div class="gallery-item"></div>
+                    <div class="gallery-item"></div>
+                    <div class="gallery-item"></div>
+                    <div class="gallery-item"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 참석 의사 섹션 -->
+        <div class="rsvp-section">
+            <button class="rsvp-btn" onclick="showMessage('참석')">참석하겠습니다</button>
+            <button class="rsvp-btn" onclick="showMessage('축하')">축하 메시지 남기기</button>
+        </div>
+
+        <!-- 푸터 -->
+        <div class="footer">
+            Made with <span class="heart">♥</span> for our special day
+        </div>
+    </div>
+
+    <script>
+        // 카운트다운 타이머
+        function updateCountdown() {
+            const weddingDate = new Date('2025-03-15T14:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        // 1초마다 카운트다운 업데이트
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 버튼 클릭 메시지
+        function showMessage(type) {
+            if (type === '참석') {
+                alert('참석 의사를 전달해 주셔서 감사합니다! 🎉');
+            } else {
+                alert('축하 메시지 기능은 준비 중입니다. 💝');
+            }
+        }
+
+        // 갤러리 아이템 클릭 이벤트
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                alert('갤러리 이미지를 클릭하셨습니다. 실제로는 이미지가 확대됩니다.');
+            });
+        });
+    </script>
+</body>
+</html>
