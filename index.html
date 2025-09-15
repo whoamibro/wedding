@@ -252,6 +252,31 @@
             font-weight: 600;
         }
 
+        .attendance-stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stats-title {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .stats-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .stats-detail {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
         .rsvp-form {
             background: white;
             padding: 20px;
@@ -301,9 +326,46 @@
             cursor: pointer;
         }
 
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .counter-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .counter-btn:hover {
+            background: #764ba2;
+            color: white;
+            border-color: #764ba2;
+        }
+
+        .counter-btn:active {
+            transform: scale(0.95);
+        }
+
         .number-input {
-            width: 80px;
+            width: 100px;
             text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .guest-info-box {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f0f4ff;
+            border-radius: 8px;
         }
 
         .rsvp-btn {
@@ -359,23 +421,6 @@
             100% { transform: scale(1); }
         }
 
-        .api-notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            color: #856404;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-
-        .meal-option {
-            margin-top: 10px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-
         @media (max-width: 480px) {
             .names {
                 font-size: 2em;
@@ -427,13 +472,6 @@
                     <p><strong>일시:</strong> 2025년 10월 25일 토요일 오후 5시 30분</p>
                     <p><strong>장소:</strong> 보코 서울 강남 LL층 볼룸홀</p>
                     <p><strong>주소:</strong> 서울특별시 강남구 도산대로 144</p>
-                    
-                    <!-- 카카오맵 API 알림 -->
-                    <div class="api-notice">
-<!--                         ⚠️ 카카오맵을 표시하려면 API 키를 등록해주세요!<br>
-                        아래 코드에서 YOUR_APP_KEY를 실제 API 키로 교체하세요. -->
-                        <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed795b6c6d786b58ae389e8207c0f173&libraries=services"></script>
-                    </div>
                     
                     <!-- 지도 컨테이너 -->
                     <div id="map"></div>
@@ -515,6 +553,17 @@
         <div class="rsvp-section">
             <h2 class="rsvp-title">참석 여부를 알려주세요</h2>
             
+            <!-- 실시간 참석 현황 -->
+            <div class="attendance-stats">
+                <div class="stats-title">현재까지 참석 예정</div>
+                <div class="stats-number">
+                    <span id="totalAttendees">0</span>명
+                </div>
+                <div class="stats-detail">
+                    신랑측: <span id="groomSide">0</span>명 | 신부측: <span id="brideSide">0</span>명
+                </div>
+            </div>
+            
             <div class="rsvp-form">
                 <form id="rsvpForm">
                     <div class="form-group">
@@ -552,9 +601,21 @@
                     </div>
                     
                     <div class="form-group" id="guestCountGroup" style="display: none;">
-                        <label class="form-label">참석 인원 *</label>
-                        <input type="number" class="form-input number-input" id="guestCount" min="1" max="10" value="1">
-                        <small style="color: #999;">본인 포함 총 인원수를 입력해주세요</small>
+                        <label class="form-label">참석 인원수 * (필수)</label>
+                        <div class="guest-counter">
+                            <button type="button" class="counter-btn" onclick="changeGuestCount(-1)">-</button>
+                            <input type="number" class="form-input number-input" id="guestCount" min="1" max="20" value="1" required readonly>
+                            <button type="button" class="counter-btn" onclick="changeGuestCount(1)">+</button>
+                        </div>
+                        <small style="color: #999; display: block; margin-top: 10px;">본인 포함 총 인원수를 입력해주세요 (최대 20명)</small>
+                        <div class="guest-info-box">
+                            <small style="color: #555;">
+                                👥 <strong>인원별 안내</strong><br>
+                                • 성인: 본인 포함 모든 성인<br>
+                                • 어린이: 초등학생 이하도 인원수에 포함<br>
+                                • 유아: 24개월 이상은 인원수에 포함
+                            </small>
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -570,12 +631,6 @@
                     소중한 시간 내주셔서 감사합니다.
                 </div>
             </div>
-            
-            <!-- Google Forms 대안 설명 -->
-            <div class="api-notice" style="margin-top: 20px;">
-                💡 참석 의사는 Google Forms로 자동 수집됩니다.<br>
-                아래 설정 가이드를 참고하여 Google Forms를 연동하세요.
-            </div>
         </div>
 
         <!-- 푸터 -->
@@ -585,8 +640,7 @@
     </div>
 
     <!-- 카카오맵 API -->
-    <!-- ⚠️ YOUR_APP_KEY를 실제 JavaScript API 키로 교체하세요! -->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed795b6c6d786b58ae389e8207c0f173&libraries=services"></script>
     
     <script>
         // 참석 여부에 따른 인원수 입력 표시/숨기기
@@ -597,9 +651,23 @@
             if (show) {
                 guestCountGroup.style.display = 'block';
                 guestCount.required = true;
+                guestCount.value = 1; // 기본값 설정
             } else {
                 guestCountGroup.style.display = 'none';
                 guestCount.required = false;
+                guestCount.value = 0; // 불참시 0으로 설정
+            }
+        }
+
+        // 인원수 증감 함수
+        function changeGuestCount(delta) {
+            const guestCount = document.getElementById('guestCount');
+            let currentValue = parseInt(guestCount.value) || 1;
+            let newValue = currentValue + delta;
+            
+            // 최소 1명, 최대 20명 제한
+            if (newValue >= 1 && newValue <= 20) {
+                guestCount.value = newValue;
             }
         }
 
@@ -607,16 +675,45 @@
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const attendance = document.querySelector('input[name="attendance"]:checked');
+            const guestCount = document.getElementById('guestCount');
+            
+            // 참석 선택시 인원수 필수 확인
+            if (attendance && attendance.value === '참석') {
+                if (!guestCount.value || guestCount.value < 1) {
+                    alert('참석 인원수를 입력해주세요.');
+                    guestCount.focus();
+                    return;
+                }
+            }
+            
             // 폼 데이터 수집
             const formData = {
                 name: document.getElementById('guestName').value,
                 phone: document.getElementById('guestPhone').value,
                 side: document.querySelector('input[name="side"]:checked').value,
-                attendance: document.querySelector('input[name="attendance"]:checked').value,
-                guestCount: document.getElementById('guestCount').value || 0,
+                attendance: attendance.value,
+                guestCount: attendance.value === '참석' ? guestCount.value : 0,
                 message: document.getElementById('message').value,
                 timestamp: new Date().toLocaleString('ko-KR')
             };
+            
+            // 참석 인원 확인 메시지
+            let confirmMessage = '';
+            if (formData.attendance === '참석') {
+                if (formData.guestCount == 1) {
+                    confirmMessage = `${formData.name}님 1명 참석으로 등록하시겠습니까?`;
+                } else {
+                    confirmMessage = `${formData.name}님 포함 총 ${formData.guestCount}명 참석으로 등록하시겠습니까?\n(본인 + 동행 ${formData.guestCount - 1}명)`;
+                }
+                if (!confirm(confirmMessage)) {
+                    return;
+                }
+            } else {
+                if (!confirm('불참으로 등록하시겠습니까?')) {
+                    return;
+                }
+            }
             
             // Google Forms URL (실제 URL로 교체 필요)
             const GOOGLE_FORM_URL = 'YOUR_GOOGLE_FORM_URL';
@@ -629,6 +726,10 @@
             
             // 성공 메시지 표시
             document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').innerHTML = formData.attendance === '참석' 
+                ? `✅ 참석 의사가 성공적으로 전달되었습니다!<br>총 ${formData.guestCount}명 참석으로 등록되었습니다.<br>소중한 시간 내주셔서 감사합니다.`
+                : `✅ 응답이 성공적으로 전달되었습니다!<br>축하해주셔서 감사합니다.`;
+            
             document.getElementById('submitBtn').disabled = true;
             document.getElementById('submitBtn').textContent = '전송 완료';
             
@@ -638,14 +739,14 @@
             // iframe.src = formUrl;
             // document.body.appendChild(iframe);
             
-            // 3초 후 폼 리셋
+            // 5초 후 폼 리셋
             setTimeout(() => {
                 this.reset();
                 document.getElementById('successMessage').style.display = 'none';
                 document.getElementById('submitBtn').disabled = false;
                 document.getElementById('submitBtn').textContent = '참석 의사 전달하기';
                 document.getElementById('guestCountGroup').style.display = 'none';
-            }, 3000);
+            }, 5000);
         });
 
         // 카카오맵 초기화
@@ -662,7 +763,7 @@
                 var map = new kakao.maps.Map(container, options);
 
                 // 마커 생성
-                var markerPosition = new kakao.maps.LatLng(37.5178,127.0247);
+                var markerPosition = new kakao.maps.LatLng(37.5178, 127.0247);
                 var marker = new kakao.maps.Marker({
                     position: markerPosition
                 });
@@ -698,8 +799,11 @@
             } catch (error) {
                 console.error('카카오맵 로드 실패:', error);
                 document.getElementById('map').innerHTML = 
-                    '<div style="padding: 50px; text-align: center; color: #999;">' +
-                    '지도를 표시하려면 API 키를 등록해주세요' +
+                    '<div style="padding: 50px; text-align: center; background: #f8f9fa; color: #666; border-radius: 10px;">' +
+                    '<div style="font-size: 2em; margin-bottom: 10px;">📍</div>' +
+                    '<strong>보코 서울 강남</strong><br>' +
+                    'LL층 볼룸홀<br>' +
+                    '서울특별시 강남구 도산대로 144<br>' +
                     '</div>';
             }
         }
@@ -709,7 +813,15 @@
             if (typeof kakao !== 'undefined' && kakao.maps) {
                 initMap();
             } else {
-                console.error('카카오맵 API가 로드되지 않았습니다. API 키를 확인해주세요.');
+                console.error('카카오맵 API가 로드되지 않았습니다.');
+                // API 키가 없을 때 기본 주소 정보 표시
+                document.getElementById('map').innerHTML = 
+                    '<div style="padding: 50px; text-align: center; background: #f8f9fa; color: #666; border-radius: 10px;">' +
+                    '<div style="font-size: 2em; margin-bottom: 10px;">📍</div>' +
+                    '<strong>보코 서울 강남</strong><br>' +
+                    'LL층 볼룸홀<br>' +
+                    '서울특별시 강남구 도산대로 144<br>' +
+                    '</div>';
             }
         };
 
@@ -754,6 +866,8 @@
         
         // 30초마다 통계 업데이트 (실제 운영시)
         // setInterval(updateAttendanceStats, 30000);
+
+        // 갤러리 클릭 이벤트
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('click', function() {
                 alert('실제 사진을 추가하려면 이미지 파일을 업로드하세요.');
