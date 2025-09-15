@@ -202,7 +202,7 @@
             object-fit: cover;
         }
 
-        /* 라이트박스 스타일 */
+        /* 라이트박스 스타일 개선 */
         .lightbox {
             display: none;
             position: fixed;
@@ -212,7 +212,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.9);
-            animation: fadeIn 0.3s ease;
+            padding: 20px;
         }
 
         .lightbox.active {
@@ -222,14 +222,22 @@
         }
 
         .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
         }
 
         .lightbox-content img {
-            width: 100%;
-            height: 100%;
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
             object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         .lightbox-close {
@@ -240,15 +248,30 @@
             font-size: 2.5em;
             cursor: pointer;
             z-index: 10000;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .lightbox-close:hover {
             color: #ff6b6b;
+            transform: scale(1.1);
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox.active {
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active img {
+            animation: zoomIn 0.3s ease;
         }
 
         .countdown {
@@ -880,20 +903,54 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 라이트박스 열기
+        // 개선된 라이트박스 함수
         function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // 스크롤 방지
+            
+            // 이미지 로드 및 크기 조정
+            const img = new Image();
+            img.onload = function() {
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                const imgWidth = this.width;
+                const imgHeight = this.height;
+                
+                // 원본 이미지의 1/3 크기 또는 화면에 맞는 크기 중 작은 것 선택
+                const maxWidth = Math.min(imgWidth / 3, windowWidth * 0.9);
+                const maxHeight = Math.min(imgHeight / 3, windowHeight * 0.9);
+                
+                // aspect ratio 유지하면서 크기 조정
+                const aspectRatio = imgWidth / imgHeight;
+                let finalWidth, finalHeight;
+                
+                if (maxWidth / maxHeight > aspectRatio) {
+                    finalHeight = maxHeight;
+                    finalWidth = finalHeight * aspectRatio;
+                } else {
+                    finalWidth = maxWidth;
+                    finalHeight = finalWidth / aspectRatio;
+                }
+                
+                lightboxImg.style.width = finalWidth + 'px';
+                lightboxImg.style.height = finalHeight + 'px';
+                lightboxImg.src = src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+            
+            img.src = src;
         }
 
         // 라이트박스 닫기
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // 스크롤 복원
+            document.body.style.overflow = 'auto';
+            // 스타일 초기화
+            lightboxImg.style.width = '';
+            lightboxImg.style.height = '';
         }
 
         // ESC 키로 라이트박스 닫기
@@ -905,7 +962,7 @@
 
         // 라이트박스 배경 클릭시 닫기
         document.getElementById('lightbox')?.addEventListener('click', function(e) {
-            if (e.target === this) {
+            if (e.target === this || e.target.classList.contains('lightbox-content')) {
                 closeLightbox();
             }
         });
