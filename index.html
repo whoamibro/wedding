@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전용진 ♥ 김혜윤 결혼합니다</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,206 +15,252 @@
         }
 
         body {
-            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Noto Serif KR', serif;
+            background: #fafafa;
             color: #333;
+            line-height: 1.6;
         }
 
-        .invitation-container {
-            max-width: 450px;
+        .container {
+            max-width: 430px;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-            animation: slideIn 0.8s ease-out;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-section {
+        /* 메인 히어로 섹션 */
+        .hero {
             position: relative;
-            height: 500px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/8.jpeg');
-            background-size: cover;
-            background-position: center;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('images/8.jpeg') center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
             text-align: center;
-            padding: 20px;
-        }
-
-        .date-badge {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .names {
-            font-size: 2.5em;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: white;
         }
 
         .wedding-date {
-            font-size: 1.2em;
-            margin-top: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        .content-section {
-            padding: 40px 30px;
-            text-align: center;
+        .couple-names {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .greeting {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #666;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .info-card {
+        .divider {
+            width: 100px;
+            height: 1px;
             background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+            margin: 20px auto;
+            opacity: 0.7;
         }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        .venue-summary {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            opacity: 0.9;
         }
 
-        .info-title {
-            font-size: 1.3em;
-            color: #764ba2;
-            margin-bottom: 15px;
-            font-weight: 600;
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
         }
 
-        .info-detail {
-            font-size: 1em;
-            color: #666;
-            line-height: 1.6;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
-        #map {
-            width: 100%;
-            height: 250px;
-            border-radius: 10px;
-            margin-top: 15px;
+        .scroll-indicator::after {
+            content: '⌄';
+            font-size: 1.5rem;
+            color: white;
+            opacity: 0.7;
         }
 
-        .map-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            justify-content: center;
+        /* 인사말 섹션 */
+        .greeting-section {
+            padding: 80px 30px;
+            text-align: center;
+            background: white;
         }
 
-        .map-btn {
-            flex: 1;
-            padding: 10px 15px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            color: #333;
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .map-btn:hover {
-            background: #f8f9fa;
-            border-color: #764ba2;
-            color: #764ba2;
-        }
-
-        .transport-info {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            text-align: left;
-            font-size: 0.9em;
-            line-height: 1.6;
-        }
-
-        .transport-section {
-            margin: 10px 0;
-        }
-
-        .transport-title {
-            font-weight: bold;
-            color: #764ba2;
-            margin-bottom: 5px;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 30px 0;
-        }
-
-        .gallery-item {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #8b7355;
+            margin-bottom: 30px;
             position: relative;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: #8b7355;
+            margin: 15px auto;
+        }
+
+        .greeting-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .parent-info {
+            margin: 40px 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .parent-info .couple {
+            margin: 15px 0;
+        }
+
+        .parent-info .couple strong {
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* 달력 섹션 */
+        .calendar-section {
+            padding: 60px 30px;
+            background: #f9f9f9;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            color: #8b7355;
+            font-weight: 500;
+        }
+
+        .calendar {
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .weekday {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #999;
+            padding: 5px;
+        }
+
+        .weekday.sunday {
+            color: #ff6b6b;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .calendar-day.other-month {
+            color: #ddd;
+        }
+
+        .calendar-day.sunday {
+            color: #ff6b6b;
+        }
+
+        .calendar-day.wedding-day {
+            background: linear-gradient(135deg, #8b7355, #a08968);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .wedding-time {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            color: #8b7355;
+        }
+
+        /* 갤러리 섹션 */
+        .gallery-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+            background: #f0f0f0;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        /* 라이트박스 스타일 개선 */
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 라이트박스 */
         .lightbox {
             display: none;
             position: fixed;
-            z-index: 9999;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
             padding: 20px;
         }
 
@@ -223,137 +272,144 @@
 
         .lightbox-content {
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        .lightbox-content img {
             max-width: 90%;
             max-height: 90%;
-            width: auto;
-            height: auto;
+        }
+
+        .lightbox img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         .lightbox-close {
             position: absolute;
             top: 20px;
-            right: 30px;
+            right: 20px;
             color: white;
-            font-size: 2.5em;
+            font-size: 2rem;
             cursor: pointer;
-            z-index: 10000;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 1001;
         }
 
-        .lightbox-close:hover {
-            color: #ff6b6b;
-            transform: scale(1.1);
+        /* 장소 섹션 */
+        .location-section {
+            padding: 60px 30px;
+            background: #f9f9f9;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .venue-info {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        .venue-name {
+            font-size: 1.3rem;
+            color: #8b7355;
+            margin-bottom: 10px;
         }
 
-        .lightbox.active {
-            animation: fadeIn 0.3s ease;
+        .venue-address {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.8;
         }
 
-        .lightbox.active img {
-            animation: zoomIn 0.3s ease;
+        #map {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
         }
 
-        .countdown {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-        }
-
-        .countdown-title {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        .countdown-timer {
+        .map-buttons {
             display: flex;
+            gap: 10px;
             justify-content: center;
-            gap: 20px;
+            margin-top: 20px;
         }
 
-        .time-unit {
-            text-align: center;
+        .map-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
         }
 
-        .time-value {
-            font-size: 2em;
-            font-weight: bold;
-            display: block;
+        .map-btn:hover {
+            background: #8b7355;
+            color: white;
+            border-color: #8b7355;
         }
 
-        .time-label {
-            font-size: 0.8em;
-            opacity: 0.8;
+        .transport-info {
+            margin-top: 40px;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
         }
 
+        .transport-item {
+            margin: 15px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .transport-item:last-child {
+            border-bottom: none;
+        }
+
+        .transport-title {
+            font-weight: 500;
+            color: #8b7355;
+            margin-bottom: 8px;
+        }
+
+        .transport-detail {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* RSVP 섹션 */
         .rsvp-section {
-            padding: 30px;
-            background: #f8f9fa;
-            text-align: center;
-        }
-
-        .rsvp-title {
-            font-size: 1.3em;
-            color: #764ba2;
-            margin-bottom: 20px;
-            font-weight: 600;
+            padding: 60px 30px;
+            background: white;
         }
 
         .rsvp-form {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            max-width: 350px;
+            margin: 0 auto;
         }
 
         .form-group {
-            margin-bottom: 15px;
-            text-align: left;
+            margin-bottom: 20px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             color: #555;
-            font-size: 0.9em;
-            font-weight: 500;
+            font-size: 0.95rem;
         }
 
         .form-input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 1em;
+            font-size: 1rem;
             transition: border-color 0.3s;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #764ba2;
+            border-color: #8b7355;
         }
 
         .radio-group {
@@ -366,311 +422,369 @@
         .radio-label {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
         }
 
         .guest-counter {
             display: flex;
             align-items: center;
-            gap: 10px;
             justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .counter-btn {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border: 1px solid #ddd;
             background: white;
-            border-radius: 8px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            transition: all 0.3s;
         }
 
         .counter-btn:hover {
-            background: #764ba2;
+            background: #8b7355;
             color: white;
-            border-color: #764ba2;
-        }
-
-        .counter-btn:active {
-            transform: scale(0.95);
+            border-color: #8b7355;
         }
 
         .number-input {
-            width: 100px;
+            width: 60px;
             text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .guest-info-box {
-            margin-top: 15px;
-            padding: 10px;
-            background: #f0f4ff;
-            border-radius: 8px;
-        }
-
-        .rsvp-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8b7355, #a08968);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1em;
             border-radius: 30px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 10px;
-            width: 100%;
+            transition: transform 0.3s;
+            margin-top: 30px;
         }
 
-        .rsvp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        .submit-btn:hover {
+            transform: translateY(-2px);
         }
 
-        .rsvp-btn:disabled {
+        .submit-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
-            transform: none;
         }
 
         .success-message {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
             display: none;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            color: #2e7d32;
         }
 
+        /* 계좌번호 섹션 */
+        .account-section {
+            padding: 60px 30px;
+            background: #f9f9f9;
+        }
+
+        .account-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .account-title {
+            font-size: 1.1rem;
+            color: #8b7355;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .account-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .account-item:last-child {
+            border-bottom: none;
+        }
+
+        .copy-btn {
+            padding: 8px 15px;
+            background: #8b7355;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* 푸터 */
         .footer {
+            padding: 40px 30px;
             background: #333;
             color: white;
             text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
         }
 
-        .heart {
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease-in-out infinite;
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        /* 애니메이션 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
-        @media (max-width: 480px) {
-            .names {
-                font-size: 2em;
-            }
-            
-            .countdown-timer {
-                gap: 10px;
-            }
-            
-            .time-value {
-                font-size: 1.5em;
-            }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="invitation-container">
-        <!-- 메인 히어로 섹션 -->
-        <div class="hero-section">
-            <div class="date-badge">2025.10.25 SAT 5:30 PM</div>
-            <h1 class="names">전용진 <span class="heart">♥</span> 김혜윤</h1>
-            <p class="wedding-date">2025년 10월 25일 토요일 오후 5시 30분</p>
-        </div>
+    <div class="container">
+        <!-- 메인 히어로 -->
+        <section class="hero">
+            <div class="wedding-date">2025. 10. 25</div>
+            <h1 class="couple-names">전용진 · 김혜윤</h1>
+            <div class="divider"></div>
+            <div class="venue-summary">토요일 오후 5시 30분<br>보코 서울 강남</div>
+            <div class="scroll-indicator"></div>
+        </section>
 
-        <!-- 인사말 섹션 -->
-        <div class="content-section">
-            <div class="greeting">
+        <!-- 인사말 -->
+        <section class="greeting-section fade-in">
+            <h2 class="section-title">초대합니다</h2>
+            <p class="greeting-text">
                 서로가 마주보며 다져온 사랑을<br>
                 이제 함께 한 곳을 바라보며<br>
                 걸어갈 수 있는 큰 사랑으로 키우고자 합니다.<br><br>
                 저희 두 사람이 사랑의 이름으로<br>
                 지켜나갈 수 있도록<br>
                 앞날을 축복해 주시면 감사하겠습니다.
-            </div>
-
-            <!-- 신랑 신부 정보 -->
-            <div class="info-card">
-                <div class="info-title">신랑 & 신부</div>
-                <div class="info-detail">
-                    <p>전인규 · 안은숙의 아들 <strong>전용진</strong></p>
-                    <p style="margin-top: 10px;">김종원 · 아무개의 딸 <strong>김혜윤</strong></p>
+            </p>
+            <div class="parent-info">
+                <div class="couple">
+                    <span>전인규 · 안은숙</span>의 아들 <strong>전용진</strong>
+                </div>
+                <div class="couple">
+                    <span>김종원 · 아무개</span>의 딸 <strong>김혜윤</strong>
                 </div>
             </div>
+        </section>
 
-            <!-- 예식 정보 -->
-            <div class="info-card">
-                <div class="info-title">예식 안내</div>
-                <div class="info-detail">
-                    <p><strong>일시:</strong> 2025년 10월 25일 토요일 오후 5시 30분</p>
-                    <p><strong>장소:</strong> 보코 서울 강남 LL층 볼룸홀</p>
-                    <p><strong>주소:</strong> 서울특별시 강남구 도산대로 144</p>
-                    
-                    <!-- 지도 컨테이너 -->
-                    <div id="map"></div>
-                    
-                    <!-- 지도 앱 연결 버튼 -->
-                    <div class="map-buttons">
-                        <a href="https://map.kakao.com/link/map/보코서울강남,37.5178,127.0247" 
-                           target="_blank" class="map-btn">
-                            📍 카카오맵
-                        </a>
-                        <a href="https://map.naver.com/v5/search/보코서울강남" 
-                           target="_blank" class="map-btn">
-                            📍 네이버지도
-                        </a>
-                        <a href="https://maps.google.com/maps?q=37.5178,127.0247" 
-                           target="_blank" class="map-btn">
-                            📍 구글맵
-                        </a>
+        <!-- 달력 -->
+        <section class="calendar-section fade-in">
+            <h2 class="section-title">Wedding Day</h2>
+            <div class="calendar-container">
+                <div class="calendar-header">2025년 10월</div>
+                <div class="calendar">
+                    <div class="calendar-weekdays">
+                        <div class="weekday sunday">일</div>
+                        <div class="weekday">월</div>
+                        <div class="weekday">화</div>
+                        <div class="weekday">수</div>
+                        <div class="weekday">목</div>
+                        <div class="weekday">금</div>
+                        <div class="weekday">토</div>
                     </div>
-                    
-                    <!-- 교통 정보 -->
-                    <div class="transport-info">
-                        <div class="transport-section">
-                            <div class="transport-title">🚇 지하철</div>
-                            3호선 신사역 1번 출구에서 도보 5분<br>
-                            7호선 학동역 10번 출구에서 도보 7분
-                        </div>
-                        <div class="transport-section">
-                            <div class="transport-title">🚌 버스</div>
-                            간선: 147, 148, 241, 463<br>
-                            지선: 3011, 4211
-                        </div>
-                        <div class="transport-section">
-                            <div class="transport-title">🚗 자가용</div>
-                            건물 내 주차장 이용 가능 (3시간 무료 주차)
-                        </div>
+                    <div class="calendar-days">
+                        <div class="calendar-day other-month">28</div>
+                        <div class="calendar-day other-month">29</div>
+                        <div class="calendar-day other-month">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day sunday">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day sunday">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day sunday">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day wedding-day">25</div>
+                        <div class="calendar-day sunday">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day other-month">1</div>
                     </div>
+                </div>
+                <div class="wedding-time">토요일 오후 5시 30분</div>
+            </div>
+        </section>
+
+        <!-- 갤러리 -->
+        <section class="gallery-section fade-in">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('images/1.jpeg')">
+                    <img src="images/1.jpeg" alt="Gallery 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/2.jpeg')">
+                    <img src="images/2.jpeg" alt="Gallery 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/3.jpeg')">
+                    <img src="images/3.jpeg" alt="Gallery 3">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/4.jpeg')">
+                    <img src="images/4.jpeg" alt="Gallery 4">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/5.jpeg')">
+                    <img src="images/5.jpeg" alt="Gallery 5">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/6.jpeg')">
+                    <img src="images/6.jpeg" alt="Gallery 6">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/7.jpeg')">
+                    <img src="images/7.jpeg" alt="Gallery 7">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/1.jpeg')">
+                    <img src="images/1.jpeg" alt="Gallery 8">
                 </div>
             </div>
+        </section>
 
-            <!-- D-Day 카운트다운 -->
-            <div class="countdown">
-                <div class="countdown-title">우리가 하나 되는 날까지</div>
-                <div class="countdown-timer" id="countdown">
-                    <div class="time-unit">
-                        <span class="time-value" id="days">00</span>
-                        <span class="time-label">일</span>
-                    </div>
-                    <div class="time-unit">
-                        <span class="time-value" id="hours">00</span>
-                        <span class="time-label">시간</span>
-                    </div>
-                    <div class="time-unit">
-                        <span class="time-value" id="minutes">00</span>
-                        <span class="time-label">분</span>
-                    </div>
-                    <div class="time-unit">
-                        <span class="time-value" id="seconds">00</span>
-                        <span class="time-label">초</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 갤러리 -->
-            <div class="info-card">
-                <div class="info-title">Gallery</div>
-                <div class="gallery">
-                    <div class="gallery-item" onclick="openLightbox('images/1.jpeg')">
-                        <img src="images/1.jpeg" alt="1">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox('images/2.jpeg')">
-                        <img src="images/2.jpeg" alt="2">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox('images/3.jpeg')">
-                        <img src="images/3.jpeg" alt="3">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox('images/4.jpeg')">
-                        <img src="images/4.jpeg" alt="4">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox('images/5.jpeg')">
-                        <img src="images/5.jpeg" alt="5">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox('images/6.jpeg')">
-                        <img src="images/6.jpeg" alt="6">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox('images/7.jpeg')">
-                        <img src="images/7.jpeg" alt="7">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 라이트박스 -->
-            <div class="lightbox" id="lightbox">
-                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-                <div class="lightbox-content">
-                    <img id="lightbox-img" src="" alt="">
-                </div>
+        <!-- 라이트박스 -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <div class="lightbox-content">
+                <img id="lightbox-img" src="" alt="">
             </div>
         </div>
 
-        <!-- 참석 의사 섹션 -->
-        <div class="rsvp-section">
-            <h2 class="rsvp-title">참석 여부를 알려주세요</h2>
-            
+        <!-- 오시는 길 -->
+        <section class="location-section fade-in">
+            <h2 class="section-title">오시는 길</h2>
+            <div class="venue-info">
+                <div class="venue-name">보코 서울 강남</div>
+                <div class="venue-address">
+                    LL층 볼룸홀<br>
+                    서울특별시 강남구 도산대로 144
+                </div>
+            </div>
+            <div id="map"></div>
+            <div class="map-buttons">
+                <a href="https://map.kakao.com/link/map/보코서울강남,37.5178,127.0247" class="map-btn">카카오맵</a>
+                <a href="https://map.naver.com/v5/search/보코서울강남" class="map-btn">네이버지도</a>
+                <a href="https://maps.google.com/maps?q=37.5178,127.0247" class="map-btn">구글맵</a>
+            </div>
+            <div class="transport-info">
+                <div class="transport-item">
+                    <div class="transport-title">🚇 지하철</div>
+                    <div class="transport-detail">
+                        3호선 신사역 1번 출구에서 도보 5분<br>
+                        7호선 학동역 10번 출구에서 도보 7분
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-title">🚌 버스</div>
+                    <div class="transport-detail">
+                        간선: 147, 148, 241, 463<br>
+                        지선: 3011, 4211
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-title">🚗 자가용</div>
+                    <div class="transport-detail">
+                        건물 내 주차장 이용 가능<br>
+                        (3시간 무료 주차)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 참석 여부 -->
+        <section class="rsvp-section fade-in">
+            <h2 class="section-title">참석 여부</h2>
             <div class="rsvp-form">
                 <form id="rsvpForm">
                     <div class="form-group">
-                        <label class="form-label">성함 *</label>
-                        <input type="text" class="form-input" id="guestName" required placeholder="홍길동">
+                        <label class="form-label">성함</label>
+                        <input type="text" class="form-input" id="guestName" required placeholder="성함을 입력해주세요">
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">연락처 *</label>
-                        <input type="tel" class="form-input" id="guestPhone" required placeholder="010-1234-5678">
+                        <label class="form-label">연락처</label>
+                        <input type="tel" class="form-input" id="guestPhone" required placeholder="010-0000-0000">
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">구분 *</label>
+                        <label class="form-label">구분</label>
                         <div class="radio-group">
                             <label class="radio-label">
-                                <input type="radio" name="side" value="신랑측" required> 신랑측
+                                <input type="radio" name="side" value="신랑측" required>
+                                <span>신랑측</span>
                             </label>
                             <label class="radio-label">
-                                <input type="radio" name="side" value="신부측" required> 신부측
+                                <input type="radio" name="side" value="신부측" required>
+                                <span>신부측</span>
                             </label>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">참석 여부 *</label>
+                        <label class="form-label">참석 여부</label>
                         <div class="radio-group">
                             <label class="radio-label">
-                                <input type="radio" name="attendance" value="참석" required onclick="toggleGuestCount(true)"> 참석
+                                <input type="radio" name="attendance" value="참석" required onclick="toggleGuestCount(true)">
+                                <span>참석</span>
                             </label>
                             <label class="radio-label">
-                                <input type="radio" name="attendance" value="불참" required onclick="toggleGuestCount(false)"> 불참
+                                <input type="radio" name="attendance" value="불참" required onclick="toggleGuestCount(false)">
+                                <span>불참</span>
                             </label>
                         </div>
                     </div>
                     
                     <div class="form-group" id="guestCountGroup" style="display: none;">
-                        <label class="form-label">참석 인원수 * (필수)</label>
+                        <label class="form-label">참석 인원</label>
                         <div class="guest-counter">
                             <button type="button" class="counter-btn" onclick="changeGuestCount(-1)">-</button>
-                            <input type="number" class="form-input number-input" id="guestCount" min="1" max="20" value="1" required readonly>
+                            <input type="number" class="form-input number-input" id="guestCount" min="1" max="10" value="1" readonly>
                             <button type="button" class="counter-btn" onclick="changeGuestCount(1)">+</button>
                         </div>
-                        <small style="color: #999; display: block; margin-top: 10px;">본인 포함 총 인원수를 입력해주세요 (최대 20명)</small>
-                        <div class="guest-info-box">
-                            <small style="color: #555;">
-                                👥 <strong>인원별 안내</strong><br>
-                                • 성인: 본인 포함 모든 성인<br>
-                                • 어린이: 초등학생 이하도 인원수에 포함<br>
-                                • 유아: 24개월 이상은 인원수에 포함
-                            </small>
+                        <div style="text-align: center; color: #999; font-size: 0.85rem; margin-top: 10px;">
+                            본인 포함 총 인원수
                         </div>
                     </div>
                     
@@ -679,27 +793,97 @@
                         <textarea class="form-input" id="message" rows="3" placeholder="축하 메시지를 남겨주세요"></textarea>
                     </div>
                     
-                    <button type="submit" class="rsvp-btn" id="submitBtn">참석 의사 전달하기</button>
+                    <button type="submit" class="submit-btn">전송하기</button>
                 </form>
                 
                 <div class="success-message" id="successMessage">
-                    ✅ 참석 의사가 성공적으로 전달되었습니다!<br>
-                    소중한 시간 내주셔서 감사합니다.
+                    참석 의사가 전달되었습니다.<br>
+                    감사합니다!
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- 마음 전하실 곳 -->
+        <section class="account-section fade-in">
+            <h2 class="section-title">마음 전하실 곳</h2>
+            <div class="account-box">
+                <div class="account-title">신랑측 계좌번호</div>
+                <div class="account-item">
+                    신한은행 110-123-456789 전용진
+                    <button class="copy-btn" onclick="copyAccount('110123456789')">복사</button>
+                </div>
+                <div class="account-item">
+                    카카오뱅크 3333-01-234567 전인규
+                    <button class="copy-btn" onclick="copyAccount('3333012345678')">복사</button>
+                </div>
+            </div>
+            <div class="account-box">
+                <div class="account-title">신부측 계좌번호</div>
+                <div class="account-item">
+                    국민은행 123-45-678901 김혜윤
+                    <button class="copy-btn" onclick="copyAccount('123456789012')">복사</button>
+                </div>
+                <div class="account-item">
+                    우리은행 1002-345-678901 김종원
+                    <button class="copy-btn" onclick="copyAccount('1002345678901')">복사</button>
+                </div>
+            </div>
+        </section>
 
         <!-- 푸터 -->
-        <div class="footer">
-            Made with <span class="heart">♥</span> for our special day
-        </div>
+        <footer class="footer">
+            <p class="footer-text">Thank you for celebrating with us</p>
+        </footer>
     </div>
 
     <!-- 카카오맵 API -->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed795b6c6d786b58ae389e8207c0f173&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed795b6c6d786b58ae389e8207c0f173"></script>
     
     <script>
-        // 참석 여부에 따른 인원수 입력 표시/숨기기
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 라이트박스
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ESC 키로 라이트박스 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // 라이트박스 배경 클릭시 닫기
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // 참석 인원 카운터
         function toggleGuestCount(show) {
             const guestCountGroup = document.getElementById('guestCountGroup');
             const guestCount = document.getElementById('guestCount');
@@ -707,265 +891,74 @@
             if (show) {
                 guestCountGroup.style.display = 'block';
                 guestCount.required = true;
-                guestCount.value = 1; // 기본값 설정
             } else {
                 guestCountGroup.style.display = 'none';
                 guestCount.required = false;
-                guestCount.value = 0; // 불참시 0으로 설정
             }
         }
 
-        // 인원수 증감 함수
         function changeGuestCount(delta) {
-            const guestCount = document.getElementById('guestCount');
-            let currentValue = parseInt(guestCount.value) || 1;
-            let newValue = currentValue + delta;
+            const input = document.getElementById('guestCount');
+            const currentValue = parseInt(input.value) || 1;
+            const newValue = currentValue + delta;
             
-            // 최소 1명, 최대 20명 제한
-            if (newValue >= 1 && newValue <= 20) {
-                guestCount.value = newValue;
+            if (newValue >= 1 && newValue <= 10) {
+                input.value = newValue;
             }
         }
 
-        // RSVP 폼 제출 처리
+        // RSVP 폼 제출
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const attendance = document.querySelector('input[name="attendance"]:checked');
-            const guestCount = document.getElementById('guestCount');
-            
-            // 참석 선택시 인원수 필수 확인
-            if (attendance && attendance.value === '참석') {
-                if (!guestCount.value || guestCount.value < 1) {
-                    alert('참석 인원수를 입력해주세요.');
-                    guestCount.focus();
-                    return;
-                }
-            }
-            
-            // 폼 데이터 수집
             const formData = {
                 name: document.getElementById('guestName').value,
                 phone: document.getElementById('guestPhone').value,
                 side: document.querySelector('input[name="side"]:checked').value,
-                attendance: attendance.value,
-                guestCount: attendance.value === '참석' ? guestCount.value : 0,
-                message: document.getElementById('message').value,
-                timestamp: new Date().toLocaleString('ko-KR')
+                attendance: document.querySelector('input[name="attendance"]:checked').value,
+                guestCount: document.getElementById('guestCount').value || 0,
+                message: document.getElementById('message').value
             };
             
-            // 참석 인원 확인 메시지
-            let confirmMessage = '';
-            if (formData.attendance === '참석') {
-                if (formData.guestCount == 1) {
-                    confirmMessage = `${formData.name}님 1명 참석으로 등록하시겠습니까?`;
-                } else {
-                    confirmMessage = `${formData.name}님 포함 총 ${formData.guestCount}명 참석으로 등록하시겠습니까?\n(본인 + 동행 ${formData.guestCount - 1}명)`;
-                }
-                if (!confirm(confirmMessage)) {
-                    return;
-                }
-            } else {
-                if (!confirm('불참으로 등록하시겠습니까?')) {
-                    return;
-                }
-            }
-            
-            // Google Forms URL (실제 URL로 교체 필요)
-            const GOOGLE_FORM_URL = 'YOUR_GOOGLE_FORM_URL';
-            
-            // Google Forms 엔트리 ID (실제 ID로 교체 필요)
-            const formUrl = `${GOOGLE_FORM_URL}?entry.XXXXX=${formData.name}&entry.XXXXX=${formData.phone}&entry.XXXXX=${formData.side}&entry.XXXXX=${formData.attendance}&entry.XXXXX=${formData.guestCount}&entry.XXXXX=${formData.message}`;
-            
-            // 개발 중에는 콘솔에 출력
             console.log('제출된 데이터:', formData);
             
             // 성공 메시지 표시
             document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('successMessage').innerHTML = formData.attendance === '참석' 
-                ? `✅ 참석 의사가 성공적으로 전달되었습니다!<br>총 ${formData.guestCount}명 참석으로 등록되었습니다.<br>소중한 시간 내주셔서 감사합니다.`
-                : `✅ 응답이 성공적으로 전달되었습니다!<br>축하해주셔서 감사합니다.`;
+            this.style.display = 'none';
             
-            document.getElementById('submitBtn').disabled = true;
-            document.getElementById('submitBtn').textContent = '전송 완료';
-            
-            // 실제 Google Forms 제출 (CORS 문제로 인해 iframe 사용)
-            // const iframe = document.createElement('iframe');
-            // iframe.style.display = 'none';
-            // iframe.src = formUrl;
-            // document.body.appendChild(iframe);
-            
-            // 5초 후 폼 리셋
-            setTimeout(() => {
-                this.reset();
-                document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('submitBtn').disabled = false;
-                document.getElementById('submitBtn').textContent = '참석 의사 전달하기';
-                document.getElementById('guestCountGroup').style.display = 'none';
-            }, 5000);
+            // 실제로는 여기서 Google Forms나 다른 백엔드로 데이터 전송
         });
 
+        // 계좌번호 복사
+        function copyAccount(accountNumber) {
+            navigator.clipboard.writeText(accountNumber).then(() => {
+                alert('계좌번호가 복사되었습니다.');
+            });
+        }
+
         // 카카오맵 초기화
-        function initMap() {
+        window.onload = function() {
             try {
-                var container = document.getElementById('map');
-                
-                // 보코 서울 강남 좌표
-                var options = {
+                const container = document.getElementById('map');
+                const options = {
                     center: new kakao.maps.LatLng(37.5178, 127.0247),
                     level: 3
                 };
-
-                var map = new kakao.maps.Map(container, options);
-
-                // 마커 생성
-                var markerPosition = new kakao.maps.LatLng(37.5178, 127.0247);
-                var marker = new kakao.maps.Marker({
+                
+                const map = new kakao.maps.Map(container, options);
+                
+                const markerPosition = new kakao.maps.LatLng(37.5178, 127.0247);
+                const marker = new kakao.maps.Marker({
                     position: markerPosition
                 });
-
+                
                 marker.setMap(map);
-
-                // 인포윈도우
-                var iwContent = '<div style="padding:10px; text-align:center; width:200px;">' +
-                               '<strong>보코 서울 강남</strong><br>' +
-                               'LL층 볼룸홀<br>' +
-                               '<a href="https://map.kakao.com/link/to/보코서울강남,37.5178,127.0247" ' +
-                               'style="color:blue; text-decoration:none;" target="_blank">길찾기</a>' +
-                               '</div>';
-
-                var infowindow = new kakao.maps.InfoWindow({
-                    content: iwContent
-                });
-
-                kakao.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map, marker);
-                });
-
-                infowindow.open(map, marker);
-
-                // 지도 컨트롤 추가
-                var mapTypeControl = new kakao.maps.MapTypeControl();
-                map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-                var zoomControl = new kakao.maps.ZoomControl();
-                map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-                console.log('카카오맵이 성공적으로 로드되었습니다!');
             } catch (error) {
-                console.error('카카오맵 로드 실패:', error);
+                console.error('지도 로드 실패:', error);
                 document.getElementById('map').innerHTML = 
-                    '<div style="padding: 50px; text-align: center; background: #f8f9fa; color: #666; border-radius: 10px;">' +
-                    '<div style="font-size: 2em; margin-bottom: 10px;">📍</div>' +
-                    '<strong>보코 서울 강남</strong><br>' +
-                    'LL층 볼룸홀<br>' +
-                    '서울특별시 강남구 도산대로 144<br>' +
-                    '</div>';
-            }
-        }
-
-        // 카카오맵 API 로드 확인 및 초기화
-        window.onload = function() {
-            if (typeof kakao !== 'undefined' && kakao.maps) {
-                initMap();
-            } else {
-                console.error('카카오맵 API가 로드되지 않았습니다.');
-                // API 키가 없을 때 기본 주소 정보 표시
-                document.getElementById('map').innerHTML = 
-                    '<div style="padding: 50px; text-align: center; background: #f8f9fa; color: #666; border-radius: 10px;">' +
-                    '<div style="font-size: 2em; margin-bottom: 10px;">📍</div>' +
-                    '<strong>보코 서울 강남</strong><br>' +
-                    'LL층 볼룸홀<br>' +
-                    '서울특별시 강남구 도산대로 144<br>' +
-                    '</div>';
+                    '<div style="padding: 100px 20px; text-align: center; background: #f5f5f5;">지도를 불러올 수 없습니다</div>';
             }
         };
-
-        // 카운트다운 타이머
-        function updateCountdown() {
-            const weddingDate = new Date('2025-10-25T17:30:00').getTime();
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            if (distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            }
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // 개선된 라이트박스 함수
-        function openLightbox(src) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            // 이미지 로드 및 크기 조정
-            const img = new Image();
-            img.onload = function() {
-                const windowWidth = window.innerWidth;
-                const windowHeight = window.innerHeight;
-                const imgWidth = this.width;
-                const imgHeight = this.height;
-                
-                // 원본 이미지의 1/3 크기 또는 화면에 맞는 크기 중 작은 것 선택
-                const maxWidth = Math.min(imgWidth / 3, windowWidth * 0.9);
-                const maxHeight = Math.min(imgHeight / 3, windowHeight * 0.9);
-                
-                // aspect ratio 유지하면서 크기 조정
-                const aspectRatio = imgWidth / imgHeight;
-                let finalWidth, finalHeight;
-                
-                if (maxWidth / maxHeight > aspectRatio) {
-                    finalHeight = maxHeight;
-                    finalWidth = finalHeight * aspectRatio;
-                } else {
-                    finalWidth = maxWidth;
-                    finalHeight = finalWidth / aspectRatio;
-                }
-                
-                lightboxImg.style.width = finalWidth + 'px';
-                lightboxImg.style.height = finalHeight + 'px';
-                lightboxImg.src = src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-            
-            img.src = src;
-        }
-
-        // 라이트박스 닫기
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            // 스타일 초기화
-            lightboxImg.style.width = '';
-            lightboxImg.style.height = '';
-        }
-
-        // ESC 키로 라이트박스 닫기
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-
-        // 라이트박스 배경 클릭시 닫기
-        document.getElementById('lightbox')?.addEventListener('click', function(e) {
-            if (e.target === this || e.target.classList.contains('lightbox-content')) {
-                closeLightbox();
-            }
-        });
     </script>
 </body>
 </html>
