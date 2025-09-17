@@ -934,27 +934,44 @@
             }
         }
 
-        // RSVP 폼 제출
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('guestName').value,
-                phone: document.getElementById('guestPhone').value,
-                side: document.querySelector('input[name="side"]:checked').value,
-                attendance: document.querySelector('input[name="attendance"]:checked').value,
-                guestCount: document.getElementById('guestCount').value || 0,
-                message: document.getElementById('message').value
-            };
-            
-            console.log('제출된 데이터:', formData);
-            
-            // 성공 메시지 표시
-            document.getElementById('successMessage').style.display = 'block';
-            this.style.display = 'none';
-            
-            // 실제로는 여기서 Google Forms나 다른 백엔드로 데이터 전송
-        });
+        // RSVP 폼 제출 - Google Forms 연동
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        name: document.getElementById('guestName').value,
+        phone: document.getElementById('guestPhone').value,
+        side: document.querySelector('input[name="side"]:checked').value,
+        attendance: document.querySelector('input[name="attendance"]:checked').value,
+        guestCount: document.getElementById('guestCount').value || 0,
+        message: document.getElementById('message').value
+    };
+    
+    // ⚠️ 여기에 실제 Google Form ID와 entry ID 입력
+    const FORM_ID = '1FAIpQLSe...'; // 실제 Form ID로 교체
+    
+    // 실제 entry ID로 교체 (Google Forms에서 확인)
+    const submitUrl = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse?` +
+        `entry.123456=${encodeURIComponent(formData.name)}&` +  // 성함
+        `entry.234567=${encodeURIComponent(formData.phone)}&` + // 연락처
+        `entry.345678=${encodeURIComponent(formData.side)}&` +  // 구분
+        `entry.456789=${encodeURIComponent(formData.attendance)}&` + // 참석여부
+        `entry.567890=${encodeURIComponent(formData.guestCount)}&` + // 인원수
+        `entry.678901=${encodeURIComponent(formData.message)}`;  // 메시지
+    
+    // iframe으로 전송
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = submitUrl;
+    document.body.appendChild(iframe);
+    
+    // 성공 메시지 표시
+    setTimeout(() => {
+        document.body.removeChild(iframe);
+        document.getElementById('successMessage').style.display = 'block';
+        this.style.display = 'none';
+    }, 1000);
+});
 
         // 계좌번호 복사
         function copyAccount(accountNumber) {
