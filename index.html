@@ -28,7 +28,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        /* 메인 히어로 섹션 - 수정됨 */
+        /* 메인 히어로 섹션 - 텍스트 위치 조정 */
         .hero {
             position: relative;
             height: 100vh;
@@ -39,7 +39,11 @@
             align-items: center;
             text-align: center;
             color: white;
-            padding-bottom: calc(100vh / 3);
+            padding-bottom: 15vh; /* 하단에서 15% 위치 */
+        }
+
+        .hero-content {
+            margin-bottom: 50px; /* 스크롤 인디케이터와의 간격 */
         }
 
         .wedding-date {
@@ -229,7 +233,7 @@
             color: #8b7355;
         }
 
-        /* 갤러리 섹션 - 수정됨 */
+        /* 갤러리 섹션 - 3열 그리드 */
         .gallery-section {
             padding: 60px 0;
             background: white;
@@ -295,7 +299,7 @@
             border-radius: 3px;
         }
 
-        /* 라이트박스 */
+        /* 라이트박스 - 스와이프 기능 추가 */
         .lightbox {
             display: none;
             position: fixed;
@@ -305,10 +309,19 @@
             height: 100%;
             background: rgba(0,0,0,0.95);
             z-index: 1000;
-            padding: 20px;
+            touch-action: none;
         }
 
         .lightbox.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -318,12 +331,14 @@
             position: relative;
             max-width: 90%;
             max-height: 90%;
+            transition: transform 0.3s ease;
         }
 
         .lightbox img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            user-select: none;
         }
 
         .lightbox-close {
@@ -334,6 +349,53 @@
             font-size: 2rem;
             cursor: pointer;
             z-index: 1001;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* 이전/다음 버튼 */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 20px 15px;
+            transition: background 0.3s;
+            z-index: 1001;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* 이미지 인디케이터 */
+        .lightbox-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
         }
 
         /* 장소 섹션 - 수정됨 */
@@ -620,16 +682,25 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* 모바일에서 이전/다음 버튼 숨기기 */
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- 메인 히어로 -->
         <section class="hero">
-            <div class="wedding-date">2025. 10. 25</div>
-            <h1 class="couple-names">용진 · 혜윤</h1>
-            <div class="divider"></div>
-            <div class="venue-summary">토요일 오후 5시 30분<br>보코 서울 강남</div>
+            <div class="hero-content">
+                <div class="wedding-date">2025. 10. 25</div>
+                <h1 class="couple-names">용진 · 혜윤</h1>
+                <div class="divider"></div>
+                <div class="venue-summary">토요일 오후 5시 30분<br>보코 서울 강남</div>
+            </div>
             <div class="scroll-indicator"></div>
         </section>
 
@@ -718,51 +789,51 @@
             <div class="gallery-wrapper">
                 <div class="gallery-grid">
                     <div class="gallery-column">
-                        <div class="gallery-item" onclick="openLightbox('images/1.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(0)">
                             <img src="images/1.jpg" alt="Gallery 1">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/2.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(1)">
                             <img src="images/2.jpg" alt="Gallery 2">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/3.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(2)">
                             <img src="images/3.jpg" alt="Gallery 3">
                         </div>
                     </div>
                     <div class="gallery-column">
-                        <div class="gallery-item" onclick="openLightbox('images/4.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(3)">
                             <img src="images/4.jpg" alt="Gallery 4">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/5.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(4)">
                             <img src="images/5.jpg" alt="Gallery 5">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/6.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(5)">
                             <img src="images/6.jpg" alt="Gallery 6">
                         </div>
                     </div>
                     <div class="gallery-column">
-                        <div class="gallery-item" onclick="openLightbox('images/7.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(6)">
                             <img src="images/7.jpg" alt="Gallery 7">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/8.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(7)">
                             <img src="images/8.jpg" alt="Gallery 8">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/9.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(8)">
                             <img src="images/9.jpg" alt="Gallery 9">
                         </div>
                     </div>
                     <div class="gallery-column">
-                        <div class="gallery-item" onclick="openLightbox('images/10.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(9)">
                             <img src="images/10.jpg" alt="Gallery 10">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/11.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(10)">
                             <img src="images/11.jpg" alt="Gallery 11">
                         </div>
-                        <div class="gallery-item" onclick="openLightbox('images/12.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(11)">
                             <img src="images/12.jpg" alt="Gallery 12">
                         </div>
                     </div>
                     <div class="gallery-column">
-                        <div class="gallery-item" onclick="openLightbox('images/13.jpg')">
+                        <div class="gallery-item" onclick="openLightbox(12)">
                             <img src="images/13.jpg" alt="Gallery 13">
                         </div>
                     </div>
@@ -773,8 +844,13 @@
         <!-- 라이트박스 -->
         <div class="lightbox" id="lightbox">
             <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <div class="lightbox-content">
-                <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-container">
+                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">❮</button>
+                <div class="lightbox-content">
+                    <img id="lightbox-img" src="" alt="">
+                </div>
+                <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">❯</button>
+                <div class="lightbox-indicator" id="lightbox-indicator">1 / 13</div>
             </div>
         </div>
 
@@ -921,6 +997,18 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed795b6c6d786b58ae389e8207c0f173"></script>
     
     <script>
+        // 갤러리 이미지 배열
+        const galleryImages = [
+            'images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg',
+            'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg',
+            'images/9.jpg', 'images/10.jpg', 'images/11.jpg', 'images/12.jpg',
+            'images/13.jpg'
+        ];
+        
+        let currentImageIndex = 0;
+        let touchStartX = null;
+        let touchEndX = null;
+
         // 스크롤 애니메이션
         const observerOptions = {
             threshold: 0.1,
@@ -939,29 +1027,87 @@
             observer.observe(el);
         });
 
-        // 라이트박스
-        function openLightbox(src) {
+        // 라이트박스 열기
+        function openLightbox(index) {
             const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = src;
+            currentImageIndex = index;
+            updateLightboxImage();
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
+        // 라이트박스 닫기
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // ESC 키로 라이트박스 닫기
+        // 이미지 변경
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = galleryImages.length - 1;
+            } else if (currentImageIndex >= galleryImages.length) {
+                currentImageIndex = 0;
+            }
+            updateLightboxImage();
+        }
+
+        // 라이트박스 이미지 업데이트
+        function updateLightboxImage() {
+            const lightboxImg = document.getElementById('lightbox-img');
+            const indicator = document.getElementById('lightbox-indicator');
+            lightboxImg.src = galleryImages[currentImageIndex];
+            indicator.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        }
+
+        // 터치 이벤트 처리
+        const lightbox = document.getElementById('lightbox');
+        
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        lightbox.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX && touchStartX) {
+                const swipeDistance = touchEndX - touchStartX;
+                if (Math.abs(swipeDistance) > 50) { // 최소 스와이프 거리
+                    if (swipeDistance > 0) {
+                        changeImage(-1); // 오른쪽으로 스와이프 (이전 이미지)
+                    } else {
+                        changeImage(1); // 왼쪽으로 스와이프 (다음 이미지)
+                    }
+                }
+            }
+            touchStartX = null;
+            touchEndX = null;
+        }
+
+        // 키보드 이벤트
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
         });
 
         // 라이트박스 배경 클릭시 닫기
         document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) closeLightbox();
+            if (e.target === this || e.target.classList.contains('lightbox-container')) {
+                closeLightbox();
+            }
         });
 
         // 참석 인원 카운터
@@ -988,7 +1134,7 @@
             }
         }
 
-        // RSVP 폼 제출 - Google Forms 연동
+        // RSVP 폼 제출
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1001,7 +1147,6 @@
                 message: document.getElementById('message').value
             };
             
-            // ✅ 실제 웹앱 URL 입력 완료!
             const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwdkepM-vkFcwL6hjD7DkI1VlaO-fbGaFYdC3BNprvOwjguwyuvA-bL6myKuh8bPwgwnQ/exec';
             
             try {
@@ -1014,7 +1159,6 @@
                     body: JSON.stringify(formData)
                 });
                 
-                // 성공 메시지 표시
                 document.getElementById('successMessage').style.display = 'block';
                 this.style.display = 'none';
                 this.reset();
