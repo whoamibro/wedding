@@ -611,7 +611,7 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
         }
 
         .radio-label input[type="radio"] {
@@ -689,34 +689,88 @@
             background: #f9f9f9;
         }
 
-        .account-box {
+        .account-toggle-item {
             background: white;
             border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
         }
 
-        .account-title {
-            font-size: 1.1rem;
-            color: #8b7355;
-            margin-bottom: 15px;
+        .account-toggle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .account-toggle-header:hover {
+            background: #faf8f6;
+        }
+
+        .account-toggle-title {
+            font-size: 1.05rem;
+            color: #333;
             font-weight: 500;
         }
 
-        .account-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.95rem;
-            color: #666;
-            text-align: center;
+        .toggle-btn {
+            width: 50px;
+            height: 26px;
+            background: #ddd;
+            border-radius: 13px;
+            position: relative;
+            transition: background 0.3s;
+            cursor: pointer;
         }
 
-        .account-item:last-child {
+        .toggle-btn.active {
+            background: #8b7355;
+        }
+
+        .toggle-btn::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-btn.active::after {
+            transform: translateX(24px);
+        }
+
+        .account-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #faf8f6;
+        }
+
+        .account-content.active {
+            max-height: 400px;
+        }
+
+        .account-info {
+            padding: 20px 25px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .account-info:last-child {
             border-bottom: none;
         }
 
         .account-number {
-            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 15px;
             line-height: 1.8;
         }
 
@@ -777,14 +831,14 @@
             <div class="modal-intro-page" id="introPage">
                 <h2 class="modal-title">참석의사 전달</h2>
                 <p class="modal-intro">
-                    참석의 부담은 가지지 말아주시고,<br>
-                    정성껏 준비하기 위해 여쭙는 것이니,<br>
-                    참석 정보를 알려주시면 감사하겠습니다.
+                    저희를 축하해주고자 참석하시는 분들을<br>
+                    모시는데 불편함이 없도록 하기 위해,<br>
+                    참석의사를 요청드립니다.
                 </p>
                 <div class="modal-divider"></div>
                 <div class="modal-info">
                     <div class="modal-couple">용진 ♥ 혜윤</div>
-                    <div>일시 : 2025.10.25 토요일 17시 30분</div>
+                    <div>일시 : 25.10.25 토요일 17시 30분</div>
                     <div>장소 : 보코 서울 강남 LL층 볼룸홀</div>
                 </div>
                 <button class="modal-btn" onclick="showRSVPForm()">참석의사 전달하기</button>
@@ -825,11 +879,11 @@
                         <div class="radio-group">
                             <label class="radio-label">
                                 <input type="radio" name="modalAttendance" value="참석" required onclick="toggleModalGuestCount(true)">
-                                <span>참석하겠습니다.</span>
+                                <span>참석하겠습니다</span>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="modalAttendance" value="불참" required onclick="toggleModalGuestCount(false)">
-                                <span>멀리서 축복하겠습니다.</span>
+                                <span>멀리서 축복하겠습니다</span>
                             </label>
                         </div>
                     </div>
@@ -878,10 +932,10 @@
             </p>
             <div class="parent-info">
                 <div class="couple">
-                    <span>전인규 · 안은숙</span>의 아들 <strong>용진</strong>
+                    <span>전인규 · 안은숙</span>의 아들 <strong>전용진</strong>
                 </div>
                 <div class="couple">
-                    <span>김종원 · 나정덕</span>의 딸 <strong>혜윤</strong>
+                    <span>김종원 · 나정덕</span>의 딸 <strong>김혜윤</strong>
                 </div>
             </div>
         </section>
@@ -1080,11 +1134,11 @@
                         <div class="radio-group">
                             <label class="radio-label">
                                 <input type="radio" name="attendance" value="참석" required onclick="toggleGuestCount(true)">
-                                <span>참석하겠습니다.</span>
+                                <span>참석하겠습니다</span>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="attendance" value="불참" required onclick="toggleGuestCount(false)">
-                                <span>멀리서 축복하겠습니다.</span>
+                                <span>멀리서 축복하겠습니다</span>
                             </label>
                         </div>
                     </div>
@@ -1119,24 +1173,43 @@
         <!-- 마음 전하실 곳 -->
         <section class="account-section fade-in">
             <h2 class="section-title">마음 전하실 곳</h2>
-            <div class="account-box">
-                <div class="account-title">신랑측 계좌번호</div>
-                <div class="account-item">
-                    <div class="account-number">
-                        우리은행 1002-249-823823<br>
-                        전용진
+            
+            <div class="account-toggle-item">
+                <div class="account-toggle-header" onclick="toggleAccount('groom')">
+                    <span class="account-toggle-title">신랑측 계좌번호</span>
+                    <div class="toggle-btn" id="groomToggle"></div>
+                </div>
+                <div class="account-content" id="groomAccount">
+                    <div class="account-info">
+                        <div class="account-number">
+                            우리은행 1002-249-823823<br>
+                            전용진
+                        </div>
+                        <button class="copy-btn" onclick="event.stopPropagation(); copyAccount('1002249823823')">복사하기</button>
                     </div>
-                    <button class="copy-btn" onclick="copyAccount('1002249823823')">복사하기</button>
                 </div>
             </div>
-            <div class="account-box">
-                <div class="account-title">신부측 계좌번호</div>
-                <div class="account-item">
-                    <div class="account-number">
-                        농협 356-0483-3651-23<br>
-                        김혜윤
+            
+            <div class="account-toggle-item">
+                <div class="account-toggle-header" onclick="toggleAccount('bride')">
+                    <span class="account-toggle-title">신부측 계좌번호</span>
+                    <div class="toggle-btn" id="brideToggle"></div>
+                </div>
+                <div class="account-content" id="brideAccount">
+                    <div class="account-info">
+                        <div class="account-number">
+                            하나 448-910461-59407<br>
+                            김혜윤
+                        </div>
+                        <button class="copy-btn" onclick="event.stopPropagation(); copyAccount('44891046159407')">복사하기</button>
                     </div>
-                    <button class="copy-btn" onclick="copyAccount('3560483365123')">복사하기</button>
+                    <div class="account-info">
+                        <div class="account-number">
+                            농협 601058-52-001767<br>
+                            김종원
+                        </div>
+                        <button class="copy-btn" onclick="event.stopPropagation(); copyAccount('60105852001767')">복사하기</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1403,9 +1476,22 @@
 
         // 계좌번호 복사
         function copyAccount(accountNumber) {
+            event.stopPropagation();
             navigator.clipboard.writeText(accountNumber).then(() => {
                 alert('계좌번호가 복사되었습니다.');
             });
+        }
+
+        // 계좌번호 토글
+        function toggleAccount(type) {
+            const toggle = document.getElementById(type + 'Toggle');
+            const content = document.getElementById(type + 'Account');
+            
+            toggle.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            // 이벤트 버블링 방지
+            event.stopPropagation();
         }
 
         // 카카오맵 초기화
