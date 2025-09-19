@@ -28,186 +28,71 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        /* 참석의사 초기 화면 */
-        .rsvp-initial {
+        /* 초기 팝업 모달 */
+        .initial-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 40px 30px;
-            background: linear-gradient(135deg, #faf9f7 0%, #f5f0e8 100%);
-            text-align: center;
+            z-index: 2000;
         }
 
-        .rsvp-initial.hidden {
+        .initial-modal.hidden {
             display: none;
         }
 
-        .rsvp-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #8b7355;
-            margin-bottom: 40px;
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        .rsvp-description {
-            font-size: 1rem;
-            line-height: 2;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .rsvp-divider {
-            width: 80px;
-            height: 1px;
-            background: #8b7355;
-            margin: 30px auto;
-            opacity: 0.5;
-        }
-
-        .rsvp-info {
-            margin: 30px 0;
-        }
-
-        .rsvp-couple {
+        .modal-title {
             font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: 400;
+            color: #8b7355;
+            margin-bottom: 25px;
+            font-weight: 500;
         }
 
-        .rsvp-detail {
+        .modal-intro {
             font-size: 0.95rem;
             line-height: 2;
             color: #666;
+            margin-bottom: 25px;
         }
 
-        .rsvp-btn {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #8b7355, #a08968);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 30px;
+        .modal-divider {
+            width: 60px;
+            height: 1px;
+            background: #ddd;
+            margin: 25px auto;
         }
 
-        .rsvp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.3);
+        .modal-info {
+            margin: 25px 0;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
         }
 
-        /* 참석의사 입력 폼 화면 */
-        .rsvp-form-page {
-            display: none;
-            min-height: 100vh;
-            padding: 40px 30px;
-            background: white;
-        }
-
-        .rsvp-form-page.active {
-            display: block;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .form-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+        .modal-couple {
+            font-size: 1.2rem;
             color: #8b7355;
             margin-bottom: 15px;
         }
 
-        .form-subtitle {
-            font-size: 0.95rem;
-            color: #999;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #8b7355;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 15px 0;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .radio-label input[type="radio"] {
-            width: 18px;
-            height: 18px;
-        }
-
-        .guest-counter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .counter-btn {
-            width: 35px;
-            height: 35px;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .counter-btn:hover {
-            background: #8b7355;
-            color: white;
-            border-color: #8b7355;
-        }
-
-        .number-input {
-            width: 60px;
-            text-align: center;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .form-submit-btn {
+        .modal-btn {
             width: 100%;
             padding: 15px;
             background: linear-gradient(135deg, #8b7355, #a08968);
@@ -217,23 +102,40 @@
             font-size: 1rem;
             cursor: pointer;
             transition: transform 0.3s;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
-        .form-submit-btn:hover {
+        .modal-btn:hover {
             transform: translateY(-2px);
         }
 
-        /* 메인 청첩장 */
-        .main-content {
+        .modal-skip {
+            margin-top: 15px;
+            color: #999;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* RSVP 폼 스타일 */
+        .modal-form {
             display: none;
         }
 
-        .main-content.active {
+        .modal-form.active {
             display: block;
         }
 
-        /* 메인 히어로 섹션 */
+        .modal-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            color: #999;
+            font-size: 1.5rem;
+        }
+
+        /* 메인 히어로 섹션 - 텍스트 위치 조정 */
         .hero {
             position: relative;
             height: 100vh;
@@ -244,11 +146,11 @@
             align-items: center;
             text-align: center;
             color: white;
-            padding-bottom: 10vh;
+            padding-bottom: 10vh; /* 하단에서 10% 위치 (더 아래로) */
         }
 
         .hero-content {
-            margin-bottom: 30px;
+            margin-bottom: 30px; /* 스크롤 인디케이터와의 간격도 줄임 */
         }
 
         .wedding-date {
@@ -349,7 +251,7 @@
             font-weight: 500;
         }
 
-        /* 달력 섹션 */
+        /* 달력 섹션 - 수정됨 */
         .calendar-section {
             padding: 60px 30px;
             background: #f9f9f9;
@@ -439,7 +341,7 @@
             color: #8b7355;
         }
 
-        /* 갤러리 섹션 */
+        /* 갤러리 섹션 - 3열 그리드 */
         .gallery-section {
             padding: 60px 30px;
             background: white;
@@ -473,7 +375,7 @@
             transform: scale(1.05);
         }
 
-        /* 라이트박스 */
+        /* 라이트박스 - 스와이프 기능 추가 */
         .lightbox {
             display: none;
             position: fixed;
@@ -532,6 +434,7 @@
             border-radius: 50%;
         }
 
+        /* 이전/다음 버튼 */
         .lightbox-nav {
             position: absolute;
             top: 50%;
@@ -558,6 +461,7 @@
             right: 20px;
         }
 
+        /* 이미지 인디케이터 */
         .lightbox-indicator {
             position: absolute;
             bottom: 20px;
@@ -570,7 +474,7 @@
             border-radius: 20px;
         }
 
-        /* 장소 섹션 */
+        /* 장소 섹션 - 수정됨 */
         .location-section {
             padding: 60px 30px;
             background: #f9f9f9;
@@ -657,6 +561,126 @@
             font-size: 0.9rem;
             color: #666;
             line-height: 1.8;
+        }
+
+        /* RSVP 섹션 */
+        .rsvp-section {
+            padding: 60px 30px;
+            background: white;
+        }
+
+        .rsvp-form {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #8b7355;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .counter-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .counter-btn:hover {
+            background: #8b7355;
+            color: white;
+            border-color: #8b7355;
+        }
+
+        .number-input {
+            width: 60px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8b7355, #a08968);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            color: #2e7d32;
         }
 
         /* 계좌번호 섹션 */
@@ -746,317 +770,467 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 참석의사 초기 화면 -->
-        <div class="rsvp-initial" id="rsvpInitial">
-            <h1 class="rsvp-title">참석의사 전달</h1>
-            <div class="rsvp-description">
-                저희를 축하해주고자 참석하시는 분들을<br><br>
-                모시는데 불편함이 없도록 하기 위해,<br><br>
-                참석의사를 요청드립니다.
-            </div>
-            <div class="rsvp-divider"></div>
-            <div class="rsvp-info">
-                <div class="rsvp-couple">용진 ♥ 혜윤</div>
-                <div class="rsvp-detail">
-                    일시 : 25.10.25 토요일 17시 30분<br>
-                    장소 : 보코 서울 강남 LL층 볼룸홀
-                </div>
-            </div>
-            <button class="rsvp-btn" onclick="showRSVPForm()">참석의사 전달하기</button>
-        </div>
-
-        <!-- 참석의사 입력 폼 -->
-        <div class="rsvp-form-page" id="rsvpFormPage">
-            <div class="form-header">
-                <h2 class="form-title">참석의사 입력</h2>
-                <p class="form-subtitle">아래 정보를 입력해주세요</p>
-            </div>
-            <form id="rsvpForm">
-                <div class="form-group">
-                    <label class="form-label">구분 *</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="side" value="신랑측" required>
-                            <span>신랑측</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="side" value="신부측" required>
-                            <span>신부측</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">성함 *</label>
-                    <input type="text" class="form-input" id="guestName" required placeholder="성함을 입력해주세요">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">연락처 *</label>
-                    <input type="tel" class="form-input" id="guestPhone" required placeholder="010-0000-0000">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">참석 여부 *</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="attendance" value="참석" required onclick="toggleGuestCount(true)">
-                            <span>참석</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="attendance" value="불참" required onclick="toggleGuestCount(false)">
-                            <span>불참</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-group" id="guestCountGroup" style="display: none;">
-                    <label class="form-label">참석 인원</label>
-                    <div class="guest-counter">
-                        <button type="button" class="counter-btn" onclick="changeGuestCount(-1)">-</button>
-                        <input type="number" class="form-input number-input" id="guestCount" min="1" max="10" value="1" readonly>
-                        <button type="button" class="counter-btn" onclick="changeGuestCount(1)">+</button>
-                    </div>
-                    <div style="text-align: center; color: #999; font-size: 0.85rem; margin-top: 10px;">
-                        본인 포함 총 인원수
-                    </div>
-                </div>
-                
-                <button type="submit" class="form-submit-btn">전달하기</button>
-            </form>
-        </div>
-
-        <!-- 메인 청첩장 -->
-        <div class="main-content" id="mainContent">
-            <!-- 메인 히어로 -->
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="wedding-date">2025. 10. 25</div>
-                    <h1 class="couple-names">용진 · 혜윤</h1>
-                    <div class="divider"></div>
-                    <div class="venue-summary">토요일 오후 5시 30분<br>보코 서울 강남</div>
-                </div>
-                <div class="scroll-indicator"></div>
-            </section>
-
-            <!-- 인사말 -->
-            <section class="greeting-section fade-in">
-                <h2 class="section-title">초대합니다</h2>
-                <p class="greeting-text">
-                    서로가 마주보며 다져온 사랑을<br>
-                    이제 함께 한 곳을 바라보며<br>
-                    걸어갈 수 있는 큰 사랑으로 키우고자 합니다.<br>
-                    저희 두 사람이 사랑의 이름으로<br>
-                    지켜나갈 수 있도록<br>
-                    앞날을 축복해 주시면 감사하겠습니다.
+    <!-- 초기 팝업 모달 -->
+    <div class="initial-modal" id="initialModal">
+        <div class="modal-content">
+            <!-- 첫 화면 -->
+            <div class="modal-intro-page" id="introPage">
+                <h2 class="modal-title">참석의사 전달</h2>
+                <p class="modal-intro">
+                    저희를 축하해주고자 참석하시는 분들을<br>
+                    모시는데 불편함이 없도록 하기 위해,<br>
+                    참석의사를 요청드립니다.
                 </p>
-                <div class="parent-info">
-                    <div class="couple">
-                        <span>전인규 · 안은숙</span>의 아들 <strong>전용진</strong>
-                    </div>
-                    <div class="couple">
-                        <span>김종원 · 나정덕</span>의 딸 <strong>김혜윤</strong>
-                    </div>
+                <div class="modal-divider"></div>
+                <div class="modal-info">
+                    <div class="modal-couple">용진 ♥ 혜윤</div>
+                    <div>일시 : 25.10.25 토요일 17시 30분</div>
+                    <div>장소 : 보코 서울 강남 LL층 볼룸홀</div>
                 </div>
-            </section>
-
-            <!-- 달력 -->
-            <section class="calendar-section fade-in">
-                <h2 class="section-title">Wedding Day</h2>
-                <div class="calendar-container">
-                    <div class="calendar-header">2025년 10월</div>
-                    <div class="calendar">
-                        <div class="calendar-weekdays">
-                            <div class="weekday sunday">일</div>
-                            <div class="weekday">월</div>
-                            <div class="weekday">화</div>
-                            <div class="weekday">수</div>
-                            <div class="weekday">목</div>
-                            <div class="weekday">금</div>
-                            <div class="weekday">토</div>
-                        </div>
-                        <div class="calendar-days">
-                            <div class="calendar-day other-month">28</div>
-                            <div class="calendar-day other-month">29</div>
-                            <div class="calendar-day other-month">30</div>
-                            <div class="calendar-day">1</div>
-                            <div class="calendar-day">2</div>
-                            <div class="calendar-day">3</div>
-                            <div class="calendar-day">4</div>
-                            <div class="calendar-day sunday">5</div>
-                            <div class="calendar-day">6</div>
-                            <div class="calendar-day">7</div>
-                            <div class="calendar-day">8</div>
-                            <div class="calendar-day">9</div>
-                            <div class="calendar-day">10</div>
-                            <div class="calendar-day">11</div>
-                            <div class="calendar-day sunday">12</div>
-                            <div class="calendar-day">13</div>
-                            <div class="calendar-day">14</div>
-                            <div class="calendar-day">15</div>
-                            <div class="calendar-day">16</div>
-                            <div class="calendar-day">17</div>
-                            <div class="calendar-day">18</div>
-                            <div class="calendar-day sunday">19</div>
-                            <div class="calendar-day">20</div>
-                            <div class="calendar-day">21</div>
-                            <div class="calendar-day">22</div>
-                            <div class="calendar-day">23</div>
-                            <div class="calendar-day">24</div>
-                            <div class="calendar-day wedding-day">25</div>
-                            <div class="calendar-day sunday">26</div>
-                            <div class="calendar-day">27</div>
-                            <div class="calendar-day">28</div>
-                            <div class="calendar-day">29</div>
-                            <div class="calendar-day">30</div>
-                            <div class="calendar-day">31</div>
-                            <div class="calendar-day other-month">1</div>
-                        </div>
-                    </div>
-                    <div class="wedding-full-date">2025년 10월 25일</div>
-                    <div class="wedding-time">토요일 오후 5시 30분</div>
-                </div>
-            </section>
-
-            <!-- 갤러리 -->
-            <section class="gallery-section fade-in">
-                <h2 class="section-title">Gallery</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(0)">
-                        <img src="images/1.jpg" alt="Gallery 1">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(1)">
-                        <img src="images/2.jpg" alt="Gallery 2">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(2)">
-                        <img src="images/3.jpg" alt="Gallery 3">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(3)">
-                        <img src="images/4.jpg" alt="Gallery 4">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(4)">
-                        <img src="images/5.jpg" alt="Gallery 5">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(5)">
-                        <img src="images/6.jpg" alt="Gallery 6">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(6)">
-                        <img src="images/7.jpg" alt="Gallery 7">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(7)">
-                        <img src="images/8.jpg" alt="Gallery 8">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(8)">
-                        <img src="images/9.jpg" alt="Gallery 9">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(9)">
-                        <img src="images/10.jpg" alt="Gallery 10">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(10)">
-                        <img src="images/11.jpg" alt="Gallery 11">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(11)">
-                        <img src="images/12.jpg" alt="Gallery 12">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(12)">
-                        <img src="images/13.jpg" alt="Gallery 13">
-                    </div>
-                </div>
-            </section>
-
-            <!-- 라이트박스 -->
-            <div class="lightbox" id="lightbox">
-                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-                <div class="lightbox-container">
-                    <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">❮</button>
-                    <div class="lightbox-content">
-                        <img id="lightbox-img" src="" alt="">
-                    </div>
-                    <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">❯</button>
-                    <div class="lightbox-indicator" id="lightbox-indicator">1 / 13</div>
-                </div>
+                <button class="modal-btn" onclick="showRSVPForm()">참석의사 전달하기</button>
+                <div class="modal-skip" onclick="closeInitialModal()">나중에 할게요</div>
             </div>
 
-            <!-- 오시는 길 -->
-            <section class="location-section fade-in">
-                <h2 class="section-title">오시는 길</h2>
-                <div class="venue-info">
-                    <div class="venue-name">보코 서울 강남</div>
-                    <div class="venue-address">
-                        LL층 볼룸홀<br>
-                        서울특별시 강남구 도산대로 144
-                    </div>
-                </div>
-                <div id="map"></div>
-                <div class="map-buttons">
-                    <a href="https://map.kakao.com/link/map/보코서울강남,37.5178,127.0247" class="map-btn">카카오맵</a>
-                    <a href="https://map.naver.com/v5/search/보코서울강남" class="map-btn">네이버<br>지도</a>
-                    <a href="https://maps.google.com/maps?q=37.5178,127.0247" class="map-btn">구글맵</a>
-                </div>
-                <div class="transport-info">
-                    <div class="transport-item">
-                        <div class="transport-title">🚇 지하철</div>
-                        <div class="transport-detail">
-                            3호선, 신분당선 신사역 1번출구 도보 5분<br>
-                            7호선 학동역 10번 출구에서 도보 15분
+            <!-- RSVP 폼 화면 -->
+            <div class="modal-form" id="modalForm">
+                <span class="modal-back" onclick="showIntroPage()">←</span>
+                <h2 class="modal-title">참석 정보 입력</h2>
+                <form id="modalRsvpForm">
+                    <div class="form-group">
+                        <label class="form-label">구분</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="modalSide" value="신랑측" required>
+                                <span>신랑측</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="modalSide" value="신부측" required>
+                                <span>신부측</span>
+                            </label>
                         </div>
                     </div>
-                    <div class="transport-item">
-                        <div class="transport-title">🚌 버스</div>
-                        <div class="transport-detail">
-                            145, 148, 440, 441, 4212<br>
-                            1100, 8001, 9202, 강남08
-                        </div>
-                    </div>
-                    <div class="transport-item">
-                        <div class="transport-title">🚗 자가용</div>
-                        <div class="transport-detail">
-                            - 호텔 뒤편 주차장 / 발레파킹 운영<br>
-                            &nbsp;&nbsp;(주차도장 필수)<br>
-                            - 참석객 분들께서는 3시간 무료주차가<br>
-                            &nbsp;&nbsp;제공됩니다.
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- 마음 전하실 곳 -->
-            <section class="account-section fade-in">
-                <h2 class="section-title">마음 전하실 곳</h2>
-                <div class="account-box">
-                    <div class="account-title">신랑측 계좌번호</div>
-                    <div class="account-item">
-                        <div class="account-number">
-                            우리은행 1002-249-823823<br>
-                            전용진
-                        </div>
-                        <button class="copy-btn" onclick="copyAccount('1002249823823')">복사하기</button>
+                    <div class="form-group">
+                        <label class="form-label">성함</label>
+                        <input type="text" class="form-input" id="modalGuestName" required placeholder="성함을 입력해주세요">
                     </div>
-                </div>
-                <div class="account-box">
-                    <div class="account-title">신부측 계좌번호</div>
-                    <div class="account-item">
-                        <div class="account-number">
-                            농협 356-0483-3651-23<br>
-                            김혜윤
-                        </div>
-                        <button class="copy-btn" onclick="copyAccount('3560483365123')">복사하기</button>
+                    
+                    <div class="form-group">
+                        <label class="form-label">연락처</label>
+                        <input type="tel" class="form-input" id="modalGuestPhone" required placeholder="010-0000-0000">
                     </div>
-                </div>
-            </section>
-
-            <!-- 푸터 -->
-            <footer class="footer">
-                <p class="footer-text">Thank you for celebrating with us</p>
-            </footer>
+                    
+                    <div class="form-group">
+                        <label class="form-label">참석 여부</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="modalAttendance" value="참석" required onclick="toggleModalGuestCount(true)">
+                                <span>참석</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="modalAttendance" value="불참" required onclick="toggleModalGuestCount(false)">
+                                <span>불참</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="modalGuestCountGroup" style="display: none;">
+                        <label class="form-label">참석 인원</label>
+                        <div class="guest-counter">
+                            <button type="button" class="counter-btn" onclick="changeModalGuestCount(-1)">-</button>
+                            <input type="number" class="form-input number-input" id="modalGuestCount" min="1" max="10" value="1" readonly>
+                            <button type="button" class="counter-btn" onclick="changeModalGuestCount(1)">+</button>
+                        </div>
+                        <div style="text-align: center; color: #999; font-size: 0.85rem; margin-top: 10px;">
+                            본인 포함 총 인원수
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="modal-btn">전달하기</button>
+                </form>
+            </div>
         </div>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="container">
+        <!-- 메인 히어로 -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="wedding-date">2025. 10. 25</div>
+                <h1 class="couple-names">용진 · 혜윤</h1>
+                <div class="divider"></div>
+                <div class="venue-summary">토요일 오후 5시 30분<br>보코 서울 강남</div>
+            </div>
+            <div class="scroll-indicator"></div>
+        </section>
+
+        <!-- 인사말 -->
+        <section class="greeting-section fade-in">
+            <h2 class="section-title">초대합니다</h2>
+            <p class="greeting-text">
+                서로가 마주보며 다져온 사랑을<br>
+                이제 함께 한 곳을 바라보며<br>
+                걸어갈 수 있는 큰 사랑으로 키우고자 합니다.<br>
+                저희 두 사람이 사랑의 이름으로<br>
+                지켜나갈 수 있도록<br>
+                앞날을 축복해 주시면 감사하겠습니다.
+            </p>
+            <div class="parent-info">
+                <div class="couple">
+                    <span>전인규 · 안은숙</span>의 아들 <strong>전용진</strong>
+                </div>
+                <div class="couple">
+                    <span>김종원 · 나정덕</span>의 딸 <strong>김혜윤</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- 달력 -->
+        <section class="calendar-section fade-in">
+            <h2 class="section-title">Wedding Day</h2>
+            <div class="calendar-container">
+                <div class="calendar-header">2025년 10월</div>
+                <div class="calendar">
+                    <div class="calendar-weekdays">
+                        <div class="weekday sunday">일</div>
+                        <div class="weekday">월</div>
+                        <div class="weekday">화</div>
+                        <div class="weekday">수</div>
+                        <div class="weekday">목</div>
+                        <div class="weekday">금</div>
+                        <div class="weekday">토</div>
+                    </div>
+                    <div class="calendar-days">
+                        <div class="calendar-day other-month">28</div>
+                        <div class="calendar-day other-month">29</div>
+                        <div class="calendar-day other-month">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day sunday">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day sunday">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day sunday">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day wedding-day">25</div>
+                        <div class="calendar-day sunday">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day other-month">1</div>
+                    </div>
+                </div>
+                <div class="wedding-full-date">2025년 10월 25일</div>
+                <div class="wedding-time">토요일 오후 5시 30분</div>
+            </div>
+        </section>
+
+        <!-- 갤러리 -->
+        <section class="gallery-section fade-in">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="images/1.jpg" alt="Gallery 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="images/2.jpg" alt="Gallery 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="images/3.jpg" alt="Gallery 3">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="images/4.jpg" alt="Gallery 4">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="images/5.jpg" alt="Gallery 5">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="images/6.jpg" alt="Gallery 6">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="images/7.jpg" alt="Gallery 7">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="images/8.jpg" alt="Gallery 8">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8)">
+                    <img src="images/9.jpg" alt="Gallery 9">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="images/10.jpg" alt="Gallery 10">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(10)">
+                    <img src="images/11.jpg" alt="Gallery 11">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(11)">
+                    <img src="images/12.jpg" alt="Gallery 12">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(12)">
+                    <img src="images/13.jpg" alt="Gallery 13">
+                </div>
+            </div>
+        </section>
+
+        <!-- 라이트박스 -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <div class="lightbox-container">
+                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">❮</button>
+                <div class="lightbox-content">
+                    <img id="lightbox-img" src="" alt="">
+                </div>
+                <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">❯</button>
+                <div class="lightbox-indicator" id="lightbox-indicator">1 / 13</div>
+            </div>
+        </div>
+
+        <!-- 오시는 길 -->
+        <section class="location-section fade-in">
+            <h2 class="section-title">오시는 길</h2>
+            <div class="venue-info">
+                <div class="venue-name">보코 서울 강남</div>
+                <div class="venue-address">
+                    LL층 볼룸홀<br>
+                    서울특별시 강남구 도산대로 144
+                </div>
+            </div>
+            <div id="map"></div>
+            <div class="map-buttons">
+                <a href="https://map.kakao.com/link/map/보코서울강남,37.5178,127.0247" class="map-btn">카카오맵</a>
+                <a href="https://map.naver.com/v5/search/보코서울강남" class="map-btn">네이버<br>지도</a>
+                <a href="https://maps.google.com/maps?q=37.5178,127.0247" class="map-btn">구글맵</a>
+            </div>
+            <div class="transport-info">
+                <div class="transport-item">
+                    <div class="transport-title">🚇 지하철</div>
+                    <div class="transport-detail">
+                        3호선, 신분당선 신사역 1번출구 도보 5분<br>
+                        7호선 학동역 10번 출구에서 도보 15분
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-title">🚌 버스</div>
+                    <div class="transport-detail">
+                        145, 148, 440, 441, 4212<br>
+                        1100, 8001, 9202, 강남08
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-title">🚗 자가용</div>
+                    <div class="transport-detail">
+                        - 호텔 뒤편 주차장 / 발레파킹 운영<br>
+                        &nbsp;&nbsp;(주차도장 필수)<br>
+                        - 참석객 분들께서는 3시간 무료주차가<br>
+                        &nbsp;&nbsp;제공됩니다.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 참석 여부 -->
+        <section class="rsvp-section fade-in">
+            <h2 class="section-title">참석 여부</h2>
+            <div class="rsvp-form">
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label class="form-label">성함</label>
+                        <input type="text" class="form-input" id="guestName" required placeholder="성함을 입력해주세요">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">연락처</label>
+                        <input type="tel" class="form-input" id="guestPhone" required placeholder="010-0000-0000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">구분</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="side" value="신랑측" required>
+                                <span>신랑측</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="side" value="신부측" required>
+                                <span>신부측</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">참석 여부</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="참석" required onclick="toggleGuestCount(true)">
+                                <span>참석</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="불참" required onclick="toggleGuestCount(false)">
+                                <span>불참</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="guestCountGroup" style="display: none;">
+                        <label class="form-label">참석 인원</label>
+                        <div class="guest-counter">
+                            <button type="button" class="counter-btn" onclick="changeGuestCount(-1)">-</button>
+                            <input type="number" class="form-input number-input" id="guestCount" min="1" max="10" value="1" readonly>
+                            <button type="button" class="counter-btn" onclick="changeGuestCount(1)">+</button>
+                        </div>
+                        <div style="text-align: center; color: #999; font-size: 0.85rem; margin-top: 10px;">
+                            본인 포함 총 인원수
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">축하 메시지 (선택)</label>
+                        <textarea class="form-input" id="message" rows="3" placeholder="축하 메시지를 남겨주세요"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">전송하기</button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    참석 의사가 전달되었습니다.<br>
+                    감사합니다!
+                </div>
+            </div>
+        </section>
+
+        <!-- 마음 전하실 곳 -->
+        <section class="account-section fade-in">
+            <h2 class="section-title">마음 전하실 곳</h2>
+            <div class="account-box">
+                <div class="account-title">신랑측 계좌번호</div>
+                <div class="account-item">
+                    <div class="account-number">
+                        우리은행 1002-249-823823<br>
+                        전용진
+                    </div>
+                    <button class="copy-btn" onclick="copyAccount('1002249823823')">복사하기</button>
+                </div>
+            </div>
+            <div class="account-box">
+                <div class="account-title">신부측 계좌번호</div>
+                <div class="account-item">
+                    <div class="account-number">
+                        농협 356-0483-3651-23<br>
+                        김혜윤
+                    </div>
+                    <button class="copy-btn" onclick="copyAccount('3560483365123')">복사하기</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <p class="footer-text">Thank you for celebrating with us</p>
+        </footer>
     </div>
 
     <!-- 카카오맵 API -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed795b6c6d786b58ae389e8207c0f173"></script>
     
     <script>
+        // 웹앱 URL
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwdkepM-vkFcwL6hjD7DkI1VlaO-fbGaFYdC3BNprvOwjguwyuvA-bL6myKuh8bPwgwnQ/exec';
+
+        // 초기 모달 관련 함수들
+        function showRSVPForm() {
+            document.getElementById('introPage').style.display = 'none';
+            document.getElementById('modalForm').classList.add('active');
+        }
+
+        function showIntroPage() {
+            document.getElementById('introPage').style.display = 'block';
+            document.getElementById('modalForm').classList.remove('active');
+        }
+
+        function closeInitialModal() {
+            document.getElementById('initialModal').classList.add('hidden');
+        }
+
+        // 모달 폼 참석 인원 카운터
+        function toggleModalGuestCount(show) {
+            const guestCountGroup = document.getElementById('modalGuestCountGroup');
+            const guestCount = document.getElementById('modalGuestCount');
+            
+            if (show) {
+                guestCountGroup.style.display = 'block';
+                guestCount.required = true;
+            } else {
+                guestCountGroup.style.display = 'none';
+                guestCount.required = false;
+                guestCount.value = 0;
+            }
+        }
+
+        function changeModalGuestCount(delta) {
+            const input = document.getElementById('modalGuestCount');
+            const currentValue = parseInt(input.value) || 1;
+            const newValue = currentValue + delta;
+            
+            if (newValue >= 1 && newValue <= 10) {
+                input.value = newValue;
+            }
+        }
+
+        // 모달 RSVP 폼 제출
+        document.getElementById('modalRsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('modalGuestName').value,
+                phone: document.getElementById('modalGuestPhone').value,
+                side: document.querySelector('input[name="modalSide"]:checked').value,
+                attendance: document.querySelector('input[name="modalAttendance"]:checked').value,
+                guestCount: document.getElementById('modalGuestCount').value || 0,
+                message: '' // 모달에는 메시지 필드가 없음
+            };
+            
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // 모달 닫기
+                closeInitialModal();
+                
+                // 성공 알림
+                setTimeout(() => {
+                    alert('참석 의사가 전달되었습니다. 감사합니다!');
+                }, 500);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        });
+
         // 갤러리 이미지 배열
         const galleryImages = [
             'images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg',
@@ -1069,100 +1243,23 @@
         let touchStartX = null;
         let touchEndX = null;
 
-        // 페이지 전환 함수
-        function showRSVPForm() {
-            document.getElementById('rsvpInitial').classList.add('hidden');
-            document.getElementById('rsvpFormPage').classList.add('active');
-        }
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        function showMainContent() {
-            document.getElementById('rsvpFormPage').classList.remove('active');
-            document.getElementById('mainContent').classList.add('active');
-            
-            // 지도 초기화 (메인 콘텐츠가 보일 때)
-            setTimeout(() => {
-                initializeMap();
-                initializeScrollAnimation();
-            }, 100);
-        }
-
-        // 참석 인원 카운터
-        function toggleGuestCount(show) {
-            const guestCountGroup = document.getElementById('guestCountGroup');
-            const guestCount = document.getElementById('guestCount');
-            
-            if (show) {
-                guestCountGroup.style.display = 'block';
-                guestCount.required = true;
-            } else {
-                guestCountGroup.style.display = 'none';
-                guestCount.required = false;
-            }
-        }
-
-        function changeGuestCount(delta) {
-            const input = document.getElementById('guestCount');
-            const currentValue = parseInt(input.value) || 1;
-            const newValue = currentValue + delta;
-            
-            if (newValue >= 1 && newValue <= 10) {
-                input.value = newValue;
-            }
-        }
-
-        // RSVP 폼 제출
-        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('guestName').value,
-                phone: document.getElementById('guestPhone').value,
-                side: document.querySelector('input[name="side"]:checked').value,
-                attendance: document.querySelector('input[name="attendance"]:checked').value,
-                guestCount: document.getElementById('guestCount').value || 0,
-                message: ''  // 초기 폼에는 메시지 필드 없음
-            };
-            
-            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwdkepM-vkFcwL6hjD7DkI1VlaO-fbGaFYdC3BNprvOwjguwyuvA-bL6myKuh8bPwgwnQ/exec';
-            
-            try {
-                await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                // 메인 청첩장으로 이동
-                showMainContent();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
-            }
-        });
-
-        // 스크롤 애니메이션 초기화
-        function initializeScrollAnimation() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
 
         // 라이트박스 열기
         function openLightbox(index) {
@@ -1214,11 +1311,11 @@
         function handleSwipe() {
             if (touchEndX && touchStartX) {
                 const swipeDistance = touchEndX - touchStartX;
-                if (Math.abs(swipeDistance) > 50) {
+                if (Math.abs(swipeDistance) > 50) { // 최소 스와이프 거리
                     if (swipeDistance > 0) {
-                        changeImage(-1);
+                        changeImage(-1); // 오른쪽으로 스와이프 (이전 이미지)
                     } else {
-                        changeImage(1);
+                        changeImage(1); // 왼쪽으로 스와이프 (다음 이미지)
                     }
                 }
             }
@@ -1247,6 +1344,63 @@
             }
         });
 
+        // 참석 인원 카운터
+        function toggleGuestCount(show) {
+            const guestCountGroup = document.getElementById('guestCountGroup');
+            const guestCount = document.getElementById('guestCount');
+            
+            if (show) {
+                guestCountGroup.style.display = 'block';
+                guestCount.required = true;
+            } else {
+                guestCountGroup.style.display = 'none';
+                guestCount.required = false;
+            }
+        }
+
+        function changeGuestCount(delta) {
+            const input = document.getElementById('guestCount');
+            const currentValue = parseInt(input.value) || 1;
+            const newValue = currentValue + delta;
+            
+            if (newValue >= 1 && newValue <= 10) {
+                input.value = newValue;
+            }
+        }
+
+        // RSVP 폼 제출
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('guestName').value,
+                phone: document.getElementById('guestPhone').value,
+                side: document.querySelector('input[name="side"]:checked').value,
+                attendance: document.querySelector('input[name="attendance"]:checked').value,
+                guestCount: document.getElementById('guestCount').value || 0,
+                message: document.getElementById('message').value
+            };
+            
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                document.getElementById('successMessage').style.display = 'block';
+                this.style.display = 'none';
+                this.reset();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        });
+
         // 계좌번호 복사
         function copyAccount(accountNumber) {
             navigator.clipboard.writeText(accountNumber).then(() => {
@@ -1255,7 +1409,7 @@
         }
 
         // 카카오맵 초기화
-        function initializeMap() {
+        window.onload = function() {
             try {
                 const container = document.getElementById('map');
                 const options = {
@@ -1276,7 +1430,7 @@
                 document.getElementById('map').innerHTML = 
                     '<div style="padding: 100px 20px; text-align: center; background: #f5f5f5;">지도를 불러올 수 없습니다</div>';
             }
-        }
+        };
     </script>
 </body>
 </html>
