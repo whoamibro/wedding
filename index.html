@@ -417,6 +417,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            line-height: 1.3;
         }
 
         .map-btn:hover {
@@ -451,7 +452,7 @@
         .transport-detail {
             font-size: 0.9rem;
             color: #666;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         /* RSVP 섹션 */
@@ -608,6 +609,7 @@
 
         .account-number {
             margin-bottom: 10px;
+            line-height: 1.8;
         }
 
         .copy-btn {
@@ -823,7 +825,7 @@
             <div id="map"></div>
             <div class="map-buttons">
                 <a href="https://map.kakao.com/link/map/보코서울강남,37.5178,127.0247" class="map-btn">카카오맵</a>
-                <a href="https://map.naver.com/v5/search/보코서울강남" class="map-btn">네이버지도</a>
+                <a href="https://map.naver.com/v5/search/보코서울강남" class="map-btn">네이버<br>지도</a>
                 <a href="https://maps.google.com/maps?q=37.5178,127.0247" class="map-btn">구글맵</a>
             </div>
             <div class="transport-info">
@@ -844,8 +846,10 @@
                 <div class="transport-item">
                     <div class="transport-title">🚗 자가용</div>
                     <div class="transport-detail">
-                        - 호텔 뒤편 주차장 / 발레파킹 운영(주차도장 필수)<br>
-                        - 참석객 분들께서는 3시간 무료주차가 제공됩니다.
+                        - 호텔 뒤편 주차장 / 발레파킹 운영<br>
+                        &nbsp;&nbsp;(주차도장 필수)<br>
+                        - 참석객 분들께서는 3시간 무료주차가<br>
+                        &nbsp;&nbsp;제공됩니다.
                     </div>
                 </div>
             </div>
@@ -925,21 +929,24 @@
         <section class="account-section fade-in">
             <h2 class="section-title">마음 전하실 곳</h2>
             <div class="account-box">
-                <div class="account-box">
                 <div class="account-title">신랑측 계좌번호</div>
                 <div class="account-item">
-                    <div class="account-number">우리은행 1002-249-823823 전용진</div>
+                    <div class="account-number">
+                        우리은행 1002-249-823823<br>
+                        전용진
+                    </div>
                     <button class="copy-btn" onclick="copyAccount('1002249823823')">복사하기</button>
                 </div>
-                
             </div>
             <div class="account-box">
                 <div class="account-title">신부측 계좌번호</div>
                 <div class="account-item">
-                    <div class="account-number">농협 356-0483-3651-23 김혜윤</div>
+                    <div class="account-number">
+                        농협 356-0483-3651-23<br>
+                        김혜윤
+                    </div>
                     <button class="copy-btn" onclick="copyAccount('3560483365123')">복사하기</button>
                 </div>
-                
             </div>
         </section>
 
